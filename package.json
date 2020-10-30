@@ -1,0 +1,23 @@
+{
+  "name": "pobmodels",
+  "version": "1.0.0",
+  "description": "all of models on pob",
+  "main": "index.js",
+  "dependencies": {
+    "pg": "^8.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pasaronlinebatu/pobmodels.git"
+  },
+  "author": "pandawadevelopers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pasaronlinebatu/pobmodels/issues"
+  },
+  "homepage": "https://github.com/pasaronlinebatu/pobmodels#readme"
+}
