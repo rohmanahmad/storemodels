@@ -4,15 +4,15 @@
 Dependency ini adalah dependency pribadi, tidak untuk aplikasi lain. dependency ini menggunakan penulisan where clause menggunakan gaya dari mongodb spt $gte, $in, $or, $and.
 
 ## how to use
-```
+```sh
 npm install pasaronlinebatu/pobmodels#[branch_name]
-```bash
+
+```
 
 ## running the query
 
-```
-
-const {ModelName} = require('pobmodels)
+```js
+const { ModelName } = require('pobmodels')
 const mdl = ModelName()
 const data = await aL
     .select()
@@ -27,4 +27,36 @@ const data = await aL
     .limit(1)
     .offset(1)
     .fetch()
-```js
+```
+
+## Available models
+
+- AccountsModel
+- ActivityLogModel
+- AddressListModel
+- AvailableShipping
+- CategoriesModel
+- ConversationListModel
+- CustomerListModel
+- EWalletModel
+- OTPCodeModel
+- PaymentRefsModel
+- ProductFavoritesModel
+- ProductImagesModel
+- ProductsModel
+- RateSummaryModel
+- ReviewRepliesModel
+- ReviewsModel
+- RolesModel
+- ShippingListModel
+- TransactionDetailModel
+- TransactionListModel
+- UKMConfigurationModel
+- UKMListModel
+- UserActivityLogModel
+- UserAccountsModel
+- UserTokensModel
+- WalletTransactionModel
+
+## To Do
+- add mongodb operator on "where() function"
