@@ -3,9 +3,9 @@
 const BaseModel = require('./__base')
 
 class UKMConfigurationModel extends BaseModel {
-    constructor(instance) {
+    constructor(opts) {
         super()
-        this.instance = instance
+        this.opts = opts
     }
 
     get tableName () {
@@ -71,7 +71,7 @@ class UKMConfigurationModel extends BaseModel {
     }
 }
 
-module.exports = function (instance = {}) {
-    const model = new UKMConfigurationModel(instance)
+module.exports = function (opt = {}) {
+    const model = new UKMConfigurationModel(opt)
     return model
 }

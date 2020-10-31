@@ -7,9 +7,9 @@ const BaseModel = require('./__base')
     ini otomatis diubah berdasarkan data dari review dan dihitung menggunakan formula
 */
 class WalletTransactionModel extends BaseModel {
-    constructor(instance) {
+    constructor(opts) {
         super()
-        this.instance = instance
+        this.opts = opts
     }
 
     get tableName () {
@@ -117,7 +117,7 @@ class WalletTransactionModel extends BaseModel {
     }
 }
 
-module.exports = function (instance = {}) {
-    const model = new WalletTransactionModel(instance)
+module.exports = function (opt = {}) {
+    const model = new WalletTransactionModel(opt)
     return model
 }

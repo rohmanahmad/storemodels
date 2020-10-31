@@ -3,9 +3,9 @@
 const BaseModel = require('./__base')
 
 class OTPCodeModel extends BaseModel {
-    constructor(instance) {
+    constructor(opts) {
         super()
-        this.instance = instance
+        this.opts = opts
     }
 
     get tableName () {
@@ -90,7 +90,7 @@ class OTPCodeModel extends BaseModel {
     }
 }
 
-module.exports = function (instance = {}) {
-    const model = new OTPCodeModel(instance)
+module.exports = function (opt = {}) {
+    const model = new OTPCodeModel(opt)
     return model
 }

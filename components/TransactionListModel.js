@@ -3,9 +3,9 @@
 const BaseModel = require('./__base')
 
 class TransactionListModel extends BaseModel {
-    constructor(instance) {
+    constructor(opts) {
         super()
-        this.instance = instance
+        this.opts = opts
     }
 
     get tableName () {
@@ -89,7 +89,7 @@ class TransactionListModel extends BaseModel {
     }
 }
 
-module.exports = function (instance = {}) {
-    const model = new TransactionListModel(instance)
+module.exports = function (opt = {}) {
+    const model = new TransactionListModel(opt)
     return model
 }

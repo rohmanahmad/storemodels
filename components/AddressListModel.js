@@ -3,9 +3,9 @@
 const BaseModel = require('./__base')
 
 class AddressListModel extends BaseModel {
-    constructor(instance) {
+    constructor(opts) {
         super()
-        this.instance = instance
+        this.opts = opts
     }
 
     get tableName () {
@@ -111,7 +111,7 @@ class AddressListModel extends BaseModel {
     }
 }
 
-module.exports = function (instance = {}) {
-    const model = new AddressListModel(instance)
+module.exports = function (opt = {}) {
+    const model = new AddressListModel(opt)
     return model
 }

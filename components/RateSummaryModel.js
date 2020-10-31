@@ -7,9 +7,9 @@ const BaseModel = require('./__base')
     ini otomatis diubah berdasarkan data dari review dan dihitung menggunakan formula
 */
 class ProductRateSummary extends BaseModel {
-    constructor(instance) {
+    constructor(opts) {
         super()
-        this.instance = instance
+        this.opts = opts
     }
 
     get tableName () {
@@ -87,7 +87,7 @@ class ProductRateSummary extends BaseModel {
     /* functions */
 }
 
-module.exports = function (instance = {}) {
-    const model = new ProductRateSummary(instance)
+module.exports = function (opt = {}) {
+    const model = new ProductRateSummary(opt)
     return model
 }

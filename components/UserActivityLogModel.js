@@ -3,9 +3,9 @@
 const BaseModel = require('./__base')
 
 class UsersModel extends BaseModel {
-    constructor(instance) {
+    constructor(opts) {
         super()
-        this.instance = instance
+        this.opts = opts
     }
 
     get tableName () {
@@ -68,7 +68,7 @@ class UsersModel extends BaseModel {
     }
 }
 
-module.exports = function (instance = {}) {
-    const model = new UsersModel(instance)
+module.exports = function (opt = {}) {
+    const model = new UsersModel(opt)
     return model
 }
