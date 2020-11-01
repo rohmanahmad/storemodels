@@ -1,13 +1,8 @@
 'use strict'
 
-const BaseModel = require('./__base')
+const PostgresORM = require('postgresql-orm')
 
-class UserAccountsModel extends BaseModel {
-    constructor(opts) {
-        super()
-        this.opts = opts
-    }
-
+class UserAccountsModel extends PostgresORM {
     get tableName () {
         return 'user_accounts'
     }

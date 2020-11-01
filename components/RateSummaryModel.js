@@ -1,17 +1,12 @@
 'use strict'
 
-const BaseModel = require('./__base')
+const PostgresORM = require('postgresql-orm')
 
 /*
     tabel ini tidak diubah secara langsung oleh pemilik maupun admin.
     ini otomatis diubah berdasarkan data dari review dan dihitung menggunakan formula
 */
-class ProductRateSummary extends BaseModel {
-    constructor(opts) {
-        super()
-        this.opts = opts
-    }
-
+class ProductRateSummary extends PostgresORM {
     get tableName () {
         return 'rate_summary'
     }
