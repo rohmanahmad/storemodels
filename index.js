@@ -3,7 +3,6 @@
 if (!process.env.POSTGRESQL_DSN) throw new Error('need POSTGRESQL_DSN env')
 
 module.exports = {
-    AccountsModel: require('./components/AccountsModel'),
     ActivityLogModel: require('./components/ActivityLogModel'),
     AddressListModel: require('./components/AddressListModel'),
     AvailableShipping: require('./components/AvailableShippingModel'),
