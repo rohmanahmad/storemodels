@@ -2,9 +2,9 @@
 
 const PostgresORM = require('postgresql-orm')
 
-class ProductImagesModel extends PostgresORM {
+class ImagesGalleryModel extends PostgresORM {
     get tableName () {
-        return 'product_images'
+        return 'images_gallery'
     }
 
     get connection () {
@@ -17,6 +17,29 @@ class ProductImagesModel extends PostgresORM {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
+                isNullable: false
+            },
+            /* 
+            available type:
+            - product
+            - profile-avatar
+            - profile-wallpaper
+            - store-avatar
+            */
+            image_type: {
+                type: String,
+                stringType: 'bpchar',
+                size: 10,
+                isNullable: false
+            },
+            /* 
+            image_group: blm tau mau dibuat apa, tp nantinya akan lebih digunakan untuk segmentasi agar query tidak terlalu ketat
+            sementara: diisi 1
+            */
+            image_group: {
+                type: Number,
+                stringType: 'int4',
+                size: 1,
                 isNullable: false
             },
             image_name: {
@@ -79,6 +102,6 @@ class ProductImagesModel extends PostgresORM {
 }
 
 module.exports = function (opt = {}) {
-    const model = new ProductImagesModel(opt)
+    const model = new ImagesGalleryModel(opt)
     return model
 }

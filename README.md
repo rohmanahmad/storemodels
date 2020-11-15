@@ -1,6 +1,7 @@
 # pobmodels version 1.0.0
 
 ## Description
+Dependency ini tidak berdiri sendiri, untuk menjalankan deps ini, dibutuhkan dependency lain yaitu: [postgre-orm](https://github.com/rohmanahmad/postgresql-orm)
 Dependency ini adalah dependency pribadi, tidak untuk aplikasi lain. dependency ini menggunakan penulisan where clause menggunakan gaya dari mongodb spt $gte, $in, $or, $and.
 
 ## How To Install
@@ -21,13 +22,28 @@ npm install pasaronlinebatu/pobmodels#[branch_name]
 - $or (to do [||])
 - $and (to do [&&])
 
+## Supported Builder Functions
+- select()
+- where()
+- orWhere()
+- join()
+- limit()
+- offset()
+
+## Supported Independent Query Functions
+- findOne
+- updateOne
+- insertOne
+
 ## Running The Query
 
 - menggunakan builder
 ```js
-const { ModelName } = require('pobmodels')
-const mdl = ModelName()
-const data = await aL
+const { ModelName1, ModelName2 } = require('pobmodels')
+const mdl1 = ModelName1()
+const {tableName: mdlTable1} = mdl1
+const {tableName: mdlTable2} = ModelName2()
+const data = await mdl1
     .select()
     .where({
         type: {'$in': ['restart-server', 'restart-server1']},
@@ -37,6 +53,7 @@ const data = await aL
         type: {'$lt': 'restart-server'},
         server_ip: '127.0.0.1'
     })
+    .join('left', mdlTable2, `${mdlTable1}.id = ${mdlTable2}.second_id`)
     .limit(1)
     .offset(1)
     .execute()

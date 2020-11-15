@@ -13,7 +13,7 @@ module.exports = {
     OTPCodeModel: require('./components/OTPCodeModel'),
     PaymentRefsModel: require('./components/PaymentRefsModel'),
     ProductFavoritesModel: require('./components/ProductFavoritesModel'),
-    ProductImagesModel: require('./components/ProductImagesModel'),
+    ImagesGalleryModel: require('./components/ImagesGalleryModel'),
     ProductsModel: require('./components/ProductsModel'),
     RateSummaryModel: require('./components/RateSummaryModel'),
     ReviewRepliesModel: require('./components/ReviewRepliesModel'),
