@@ -1,0 +1,2 @@
+rsync -azvP --exclude node_modules --exclude package* --exclude .git* * ~/Projects/StartUp/SalesApp/backend-app/node_modules/pobmodels;
+rsync -azvP --exclude node_modules --exclude package* --exclude .git* * ~/Projects/StartUp/SalesApp/app-commands/node_modules/pobmodels;

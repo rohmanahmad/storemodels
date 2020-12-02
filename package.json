@@ -9,7 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "dev": "nodemon -x \"rsync -azvP * ../backend-app/node_modules/pobmodels\" -w"
+    "dev": "nodemon -x \"sh sync.sh\" -w"
   },
   "repository": {
     "type": "git",

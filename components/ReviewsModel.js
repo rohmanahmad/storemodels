@@ -25,12 +25,8 @@ class ProductsModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             }, // as foreign-key to product_list
-            ukm_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: false
-            }, // as foreign-key to ukm_list
+            // untuk review tidak memerlukan ukm_id, krn secara default, ukm tidak bisa tulis review, hanya bisa reply aja.
+            // untuk penanganan menggunakan product_id
             customer_id: {
                 type: Number,
                 stringType: 'int4',
@@ -71,7 +67,7 @@ class ProductsModel extends PostgresORM {
                 uniq: true
             },
             product: { // mencari review by productid dan customerid serta ukmid
-                keys: {product_id: -1, ukm_id: 1, customer_id: 1},
+                keys: {product_id: -1, customer_id: 1},
                 uniq: false
             },
             date: { // untuk sorting kebanyakan DESC

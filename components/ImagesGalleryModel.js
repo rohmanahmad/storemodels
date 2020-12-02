@@ -19,12 +19,18 @@ class ImagesGalleryModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            second_id: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            }, // foreign-key dari product_list
             /* 
             available type:
-            - product
-            - profile-avatar
-            - profile-wallpaper
-            - store-avatar
+                - product
+                - profile-avatar
+                - profile-wallpaper
+                - store-avatar
             */
             image_type: {
                 type: String,
@@ -33,13 +39,13 @@ class ImagesGalleryModel extends PostgresORM {
                 isNullable: false
             },
             /* 
-            image_group: blm tau mau dibuat apa, tp nantinya akan lebih digunakan untuk segmentasi agar query tidak terlalu ketat
-            sementara: diisi 1
+            image_group: 
+                - thumbnail
             */
             image_group: {
-                type: Number,
-                stringType: 'int4',
-                size: 1,
+                type: String,
+                stringType: 'bpchar',
+                size: 20,
                 isNullable: false
             },
             image_name: {
@@ -48,12 +54,6 @@ class ImagesGalleryModel extends PostgresORM {
                 size: 30,
                 isNullable: false
             }, // akan di tempatkan pada alt di tag <img>
-            product_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: false
-            }, // foreign-key dari product_list
             image_url: {
                 type: String,
                 stringType: 'text',
@@ -87,8 +87,8 @@ class ImagesGalleryModel extends PostgresORM {
                 keys: {id: -1},
                 uniq: true
             },
-            product: {
-                keys: {product_id: 1},
+            second: {
+                keys: {second_id: 1},
                 uniq: false
             },
             date: { // untuk sorting kebanyakan DESC

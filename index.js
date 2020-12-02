@@ -24,6 +24,7 @@ module.exports = {
     TransactionListModel: require('./components/TransactionListModel'),
     UKMConfigurationModel: require('./components/UKMConfigurationModel'),
     UKMListModel: require('./components/UKMListModel'),
+    UKMSummariesModel: require('./components/UKMSummariesModel'),
     UserActivityLogModel: require('./components/UserActivityLogModel'),
     UserAccountsModel: require('./components/UserAccountsModel'),
     UserTokensModel: require('./components/UserTokensModel'),

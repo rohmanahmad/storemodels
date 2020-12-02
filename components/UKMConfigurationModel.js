@@ -26,8 +26,8 @@ class UKMConfigurationModel extends PostgresORM {
                 isNullable: false
             }, // relasi ke transactions.id
             key: {
-                type: Number,
-                stringType: 'int4',
+                type: String,
+                stringType: 'bpchar',
                 size: 0,
                 isNullable: false
             }, // relase ke product_list.id

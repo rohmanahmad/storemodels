@@ -2,9 +2,9 @@
 
 const PostgresORM = require('postgresql-orm')
 
-class ProductsModel extends PostgresORM {
+class UKMSummariesModel extends PostgresORM {
     get tableName () {
-        return 'product_list'
+        return 'ukm_summaries'
     }
 
     get connection () {
@@ -19,70 +19,79 @@ class ProductsModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
-            // untuk product yg di embed
-            // jika terisi, maka semua data akan di referensikan ke parent productnya
-            /* 
-            field yg akan di referensikan:
-            - product_stock
-            - product_status
-            selebihnya bebas kreasi, untuk issue marketing, krn setiap marketing punya cara sendiri untuk memasarkan product tsb
-            * harga akan selalu ngikuti sesuai dengan margin dan kesepakatan, apakah menggunakan persentase atau komisi
-            */
-            product_reference_id: {
+            ukm_id: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
                 isNullable: false
             },
-            estalase_id: {
+            total_mitra: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
                 isNullable: false
             },
-            category_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: false
-            }, // foreign-key dari category_list
-            product_name: {
-                type: String,
-                stringType: 'bpchar',
-                size: 30,
-                isNullable: false
-            },
-            product_description: {
-                type: String,
-                stringType: 'text',
-                size: 0,
-                isNullable: false
-            },
-            product_price: {
+            total_owned_products: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
                 isNullable: false
             },
-            /**
-             * status: Number
-             * - 0 : inactive
-             * - 1 : active
-             * - 2 : pending_review
-             */
-            product_status: {
+            total_embed_products: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
                 isNullable: false
             },
-            product_discount: {
+            total_success_trx: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
                 isNullable: false
             },
-            product_stock: {
+            total_pending_trx: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
+            total_cancel_trx: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
+            rate_trx_7days_ago: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
+            total_customer_reports: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
+            total_members: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
+            rate_chats_7days_ago: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
+            slowest_response_time: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
+            fastest_response_time: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
@@ -109,13 +118,9 @@ class ProductsModel extends PostgresORM {
                 keys: {id: -1},
                 uniq: true
             },
-            category: { // digunakan untuk pencarian by category
-                keys: {category_id: 1},
-                uniq: false
-            },
-            productname: { // digunakan untuk pencarian by keyword
-                keys: {product_name: 1},
-                uniq: false
+            ukm_id: { // digunakan untuk pencarian by keyword
+                keys: {ukm_id: 1},
+                uniq: true
             },
             date: { // untuk sorting kebanyakan DESC
                 keys: {created_at: -1},
@@ -126,6 +131,6 @@ class ProductsModel extends PostgresORM {
 }
 
 module.exports = function (opt = {}) {
-    const model = new ProductsModel(opt)
+    const model = new UKMSummariesModel(opt)
     return model
 }

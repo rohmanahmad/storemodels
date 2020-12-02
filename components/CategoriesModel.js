@@ -19,6 +19,12 @@ class CategoriesModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            category_type: {
+                type: String,
+                stringType: 'bpchar',
+                size: 30,
+                isNullable: false
+            },
             parent_id: {
                 type: Number,
                 stringType: 'int4',
