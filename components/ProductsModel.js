@@ -88,6 +88,12 @@ class ProductsModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            product_views_total: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',
