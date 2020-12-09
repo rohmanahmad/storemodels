@@ -31,6 +31,7 @@ class ImagesGalleryModel extends PostgresORM {
                 - profile-avatar
                 - profile-wallpaper
                 - store-avatar
+                - category
             */
             image_type: {
                 type: String,
@@ -76,7 +77,7 @@ class ImagesGalleryModel extends PostgresORM {
                 type: Date,
                 stringType: 'timestamp',
                 size: 0,
-                isNullable: false
+                isNullable: true
             }
         }
     }

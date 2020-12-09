@@ -2,9 +2,9 @@
 
 const PostgresORM = require('postgresql-orm')
 
-class TransactionDetailModel extends PostgresORM {
+class LocationModel extends PostgresORM {
     get tableName () {
-        return 'transaction_detail'
+        return 'location_list'
     }
 
     get connection () {
@@ -12,6 +12,7 @@ class TransactionDetailModel extends PostgresORM {
     }
 
     get schemas () {
+        /* level 1 adalah kelurahan */
         return {
             id: {
                 type: Number,
@@ -19,41 +20,41 @@ class TransactionDetailModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
-            transaction_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: false
-            }, // relasi ke transactions.id
-            trx_product_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: false
-            }, // relase ke product_list.id
-            trx_locked_name: {
+            location_name: {
                 type: String,
                 stringType: 'bpchar',
-                size: 30,
+                size: 100,
                 isNullable: false
             },
-            trx_locked_price: {
+            kecamatan_id: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
                 isNullable: false
             },
-            trx_locked_image_urls: {
+            kab_kota_id: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
+            propinsi_id: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
+            latitude: {
                 type: String,
-                stringType: 'text',
-                size: 0,
-                isNullable: false
-            }, // url didapat dari copy dari product images
-            trx_locked_discount: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: false
+                stringType: 'bpchar',
+                size: 20,
+                isNullable: true
+            },
+            longitude: {
+                type: String,
+                stringType: 'bpchar',
+                size: 20,
+                isNullable: true
             },
             created_at: {
                 type: Date,
@@ -73,11 +74,11 @@ class TransactionDetailModel extends PostgresORM {
     get index () {
         return {
             primary: {
-                keys: {id: -1},
+                keys: { id: -1 },
                 uniq: true
             },
-            date: { // untuk sorting
-                keys: {created_at: -1},
+            location_name: { // untuk sorting kebanyakan DESC
+                keys: { location_name: 1 },
                 uniq: false
             }
         }
@@ -85,6 +86,6 @@ class TransactionDetailModel extends PostgresORM {
 }
 
 module.exports = function (opt = {}) {
-    const model = new TransactionDetailModel(opt)
+    const model = new LocationModel(opt)
     return model
 }

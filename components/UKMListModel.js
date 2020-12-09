@@ -43,6 +43,12 @@ class UKMListModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            address_stars_rate: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',
@@ -53,7 +59,7 @@ class UKMListModel extends PostgresORM {
                 type: Date,
                 stringType: 'timestamp',
                 size: 0,
-                isNullable: false
+                isNullable: true
             }
         }
     }

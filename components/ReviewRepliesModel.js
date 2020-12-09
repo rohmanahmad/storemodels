@@ -29,13 +29,13 @@ class ProductReviewRepliesModel extends PostgresORM {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: true
             }, // relasi ke customer.id
             ukm_id: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: true
             }, // relasi ke ukm.id
             reply_text: {
                 type: String,
@@ -47,7 +47,7 @@ class ProductReviewRepliesModel extends PostgresORM {
                 type: String,
                 stringType: 'text',
                 size: 0,
-                isNullable: false
+                isNullable: true
             },
             created_at: {
                 type: Date,
@@ -59,7 +59,7 @@ class ProductReviewRepliesModel extends PostgresORM {
                 type: Date,
                 stringType: 'timestamp',
                 size: 0,
-                isNullable: false
+                isNullable: true
             }
         }
     }

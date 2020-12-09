@@ -19,6 +19,12 @@ class AddressListModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            is_default: {
+                type: Number,
+                stringType: 'int4',
+                size: 1,
+                isNullable: false
+            },
             address_name: {
                 type: String,
                 stringType: 'bpchar',
@@ -31,47 +37,23 @@ class AddressListModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
-            address_province: {
-                type: String,
-                stringType: 'bpchar',
-                size: 50,
-                isNullable: false
-            },
-            address_city: {
-                type: String,
-                stringType: 'bpchar',
-                size: 30,
-                isNullable: false
-            },
-            address_kecamatan: {
-                type: String,
-                stringType: 'bpchar',
-                size: 30,
-                isNullable: false
-            },
-            address_kelurahan: {
-                type: String,
-                stringType: 'bpchar',
-                size: 30,
-                isNullable: false
-            },
-            address_postal_code: {
-                type: String,
-                stringType: 'bpchar',
-                size: 10,
+            location_id: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
                 isNullable: false
             },
             ukm_id: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: true
             }, // relasi ke ukm.id
             customer_id: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: true
             }, // relasi ke customer.id
             created_at: {
                 type: Date,
@@ -83,7 +65,7 @@ class AddressListModel extends PostgresORM {
                 type: Date,
                 stringType: 'timestamp',
                 size: 0,
-                isNullable: false
+                isNullable: true
             }
         }
     }

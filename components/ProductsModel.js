@@ -19,6 +19,12 @@ class ProductsModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            ukm_id: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
             // untuk product yg di embed
             // jika terisi, maka semua data akan di referensikan ke parent productnya
             /* 
@@ -38,7 +44,7 @@ class ProductsModel extends PostgresORM {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: true
             },
             category_id: {
                 type: Number,
@@ -94,6 +100,12 @@ class ProductsModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            product_stars_rate: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',
@@ -104,7 +116,7 @@ class ProductsModel extends PostgresORM {
                 type: Date,
                 stringType: 'timestamp',
                 size: 0,
-                isNullable: false
+                isNullable: true
             }
         }
     }

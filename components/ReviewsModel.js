@@ -19,7 +19,15 @@ class ProductsModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
-            product_id: {
+            /* available groups: product, ukm,  */
+            review_group: {
+                type: String,
+                stringType: 'bpchar',
+                size: 20,
+                isNullable: false
+            },
+            /* reerence to product_table or ukm or others */
+            reference_id: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
@@ -55,7 +63,7 @@ class ProductsModel extends PostgresORM {
                 type: Date,
                 stringType: 'timestamp',
                 size: 0,
-                isNullable: false
+                isNullable: true
             },
         }
     }

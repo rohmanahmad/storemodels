@@ -20,18 +20,20 @@ class UserAccountsModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            /* email dan password tidak wajib, krn harus menggunakan nomor telp sebagai OTP */
             user_email: {
                 type: String,
                 stringType: 'bpchar',
                 size: 50,
-                isNullable: false
+                isNullable: true
             },
             user_password: {
                 type: String,
                 stringType: 'text',
                 size: 0,
-                isNullable: false
+                isNullable: true
             },
+            /* phonenumber wajib */
             user_phonenumber: {
                 type: String,
                 stringType: 'bpchar',
@@ -54,8 +56,10 @@ class UserAccountsModel extends PostgresORM {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
-            }, // jika user tsb juga sebagai mitra, maka ukm id ada isinya
+                isNullable: true
+            },
+            /* setiap kali pendaftaran user baru, maka otomatis terdaftar sebagai customer sebagai default */
+            /* jika user tsb juga sebagai mitra, maka ukm id ada isinya */
             customer_id: {
                 type: Number,
                 stringType: 'int4',
@@ -72,7 +76,7 @@ class UserAccountsModel extends PostgresORM {
                 type: Date,
                 stringType: 'timestamp',
                 size: 0,
-                isNullable: false
+                isNullable: true
             }
         }
     }

@@ -25,7 +25,7 @@ class UKMSummariesModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
-            total_mitra: {
+            total_partners: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
@@ -107,7 +107,7 @@ class UKMSummariesModel extends PostgresORM {
                 type: Date,
                 stringType: 'timestamp',
                 size: 0,
-                isNullable: false
+                isNullable: true
             }
         }
     }

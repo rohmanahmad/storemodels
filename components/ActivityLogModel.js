@@ -19,6 +19,12 @@ class UsersModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            type: {
+                type: String,
+                stringType: 'bpchar',
+                size: 20,
+                isNullable: false
+            },
             server_ip: {
                 type: String,
                 stringType: 'bpchar',
@@ -41,13 +47,7 @@ class UsersModel extends PostgresORM {
                 type: Date,
                 stringType: 'timestamp',
                 size: 0,
-                isNullable: false
-            },
-            type: {
-                type: String,
-                stringType: 'bpchar',
-                size: 20,
-                isNullable: false
+                isNullable: true
             }
         }
     }

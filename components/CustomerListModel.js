@@ -41,43 +41,43 @@ class CustomerListModel extends PostgresORM {
                 type: String,
                 stringType: 'text',
                 size: 0,
-                isNullable: false
+                isNullable: true
             }, // foto bersama ktp untuk prosess verifikasi
             identity_no: {
                 type: String,
                 stringType: 'bpchar',
                 size: 30,
-                isNullable: false
+                isNullable: true
             }, // nomor ktp
             birth_date: {
                 type: Date,
                 stringType: 'date',
                 size: 0,
-                isNullable: false
+                isNullable: true
             }, // tanggal tanpa jam
             birth_place: {
                 type: String,
                 stringType: 'bpchar',
                 size: 30,
-                isNullable: false
+                isNullable: true
             }, // kota tempat lahir
             main_address_id: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: true
             }, // relasi ke address_list.id
             secondary_address_id: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: true
             }, // relasi ke address_list.id
             is_indonesia: {
                 type: Boolean,
                 stringType: 'bool',
                 size: 0,
-                isNullable: false
+                isNullable: true
             }, // ktp indonesia atau bukan
             created_at: {
                 type: Date,
@@ -89,7 +89,7 @@ class CustomerListModel extends PostgresORM {
                 type: Date,
                 stringType: 'timestamp',
                 size: 0,
-                isNullable: false
+                isNullable: true
             }
         }
     }

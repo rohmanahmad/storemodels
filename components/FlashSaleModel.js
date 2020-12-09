@@ -25,6 +25,12 @@ class FlashSaleModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            event_name: {
+                type: String,
+                stringType: 'bpchar',
+                size: 30,
+                isNullable: false
+            },
             flash_price: {
                 type: Number,
                 stringType: 'int4',
@@ -37,15 +43,9 @@ class FlashSaleModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
-            product_discount: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: false
-            },
-            product_stock: {
-                type: Number,
-                stringType: 'int4',
+            flash_expires: {
+                type: Date,
+                stringType: 'timestamp',
                 size: 0,
                 isNullable: false
             },
@@ -59,7 +59,7 @@ class FlashSaleModel extends PostgresORM {
                 type: Date,
                 stringType: 'timestamp',
                 size: 0,
-                isNullable: false
+                isNullable: true
             }
         }
     }
