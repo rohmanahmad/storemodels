@@ -38,7 +38,7 @@ class ProductsModel extends PostgresORM {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: true
             },
             estalase_id: {
                 type: Number,
@@ -89,6 +89,12 @@ class ProductsModel extends PostgresORM {
                 isNullable: false
             },
             product_stock: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
+            product_location: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,

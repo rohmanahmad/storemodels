@@ -51,7 +51,7 @@ class ProductsModel extends PostgresORM {
                 type: String,
                 stringType: 'text',
                 size: 0,
-                isNullable: false
+                isNullable: true
             }, // dipisahkan tanda koma. metok 4 images
             created_at: {
                 type: Date,

@@ -33,13 +33,13 @@ class ProductRateSummary extends PostgresORM {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: true
             }, 
             ukm_id: {// foreign-key dari ukm_list
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: true
             },
             stars_level: {
                 type: Number,

@@ -47,7 +47,7 @@ class ImagesGalleryModel extends PostgresORM {
                 type: String,
                 stringType: 'bpchar',
                 size: 20,
-                isNullable: false
+                isNullable: true
             },
             image_name: {
                 type: String,

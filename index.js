@@ -30,5 +30,5 @@ module.exports = {
     UserAccountsModel: require('./components/UserAccountsModel'),
     UserActivityLogModel: require('./components/UserActivityLogModel'),
     UserTokensModel: require('./components/UserTokensModel'),
-    WalletTransactionModel: require('./components/WalletTransactionModel'),
+    WalletTransactionModel: require('./components/WalletTransactionModel')
 }

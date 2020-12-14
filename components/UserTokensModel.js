@@ -31,6 +31,12 @@ class UserTokensModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             }, // text hash
+            data: {
+                type: String,
+                stringType: 'text',
+                size: 0,
+                isNullable: true
+            }, // text hash
             expired: {
                 type: Date,
                 stringType: 'timestamp',
