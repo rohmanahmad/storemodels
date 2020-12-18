@@ -19,41 +19,71 @@ class TransactionListModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
-            transaction_id: {
+            user_id: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
-            }, // relasi ke transactions.id
-            trx_product_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: false
-            }, // relase ke product_list.id
-            trx_locked_name: {
-                type: String,
-                stringType: 'bpchar',
-                size: 30,
-                isNullable: false
+                isNullable: true
             },
-            trx_locked_price: {
+            /* 
+            item_total: semua item uniq
+            */
+            item_total: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: true
             },
-            trx_locked_image_urls: {
-                type: String,
-                stringType: 'text',
-                size: 0,
-                isNullable: false
-            },
-            trx_locked_discount: {
+            /* 
+            item_qty_total: jumlah semua masing2 item dengan qty yg berbeda2
+            */
+            item_qty_total: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: true
+            },
+            /* 
+            didapat dari seluruh sub total item pada detail trx
+            */
+            item_price_total: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: true
+            },
+            /* 
+            seluruh jumlah keseluruhan discount
+            */
+            discount_total: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: true
+            },
+            /* 
+            hasil pengurangan dari jumlah harga - jumlah discount
+            */
+            total_invoice: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: true
+            },
+            /* 
+            statuses:
+            0: pending (artinya, masih di keranjang)
+            1: (on-packing) selesai (sudah melakukan pembayaran, tp masih blm diterima barangnya)
+            2: (awaiting) barang sedang dikirimkan, dan pelanggan masih menunggu barang belanjaan tsb
+            3: (success) barang sudah di terima oleh pelanggan
+            50: (return) barang dikembalikan atas beberapa alasan
+            60: (cancel) pesanan di batalkan krn alasan tertentu
+            */
+            trx_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: true
             },
             created_at: {
                 type: Date,

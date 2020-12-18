@@ -19,7 +19,7 @@ class TransactionDetailModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
-            transaction_id: {
+            trx_id: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
@@ -50,6 +50,18 @@ class TransactionDetailModel extends PostgresORM {
                 isNullable: false
             }, // url didapat dari copy dari product images
             trx_locked_discount: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
+            trx_qty: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
+            trx_sub_total: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
