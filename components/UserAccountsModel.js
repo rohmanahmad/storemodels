@@ -66,6 +66,12 @@ class UserAccountsModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            user_role: {
+                type: String,
+                stringType: 'bpchar',
+                size: 10,
+                isNullable: false
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',
