@@ -19,10 +19,16 @@ class ProductsModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            _id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
             ukm_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
             },
             // untuk product yg di embed
@@ -35,21 +41,21 @@ class ProductsModel extends PostgresORM {
             * harga akan selalu ngikuti sesuai dengan margin dan kesepakatan, apakah menggunakan persentase atau komisi
             */
             product_reference_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: true
             },
             estalase_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: true
             },
             category_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
             }, // foreign-key dari category_list
             product_name: {
@@ -95,9 +101,9 @@ class ProductsModel extends PostgresORM {
                 isNullable: false
             },
             product_location: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
             },
             product_views_total: {
@@ -130,7 +136,7 @@ class ProductsModel extends PostgresORM {
     get index () {
         return {
             primary: {
-                keys: {id: -1},
+                keys: {_id: -1},
                 uniq: true
             },
             category: { // digunakan untuk pencarian by category

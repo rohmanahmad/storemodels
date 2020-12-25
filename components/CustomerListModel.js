@@ -19,6 +19,12 @@ class CustomerListModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            _id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
             customer_title: {
                 type: String,
                 stringType: 'bpchar',
@@ -62,16 +68,16 @@ class CustomerListModel extends PostgresORM {
                 isNullable: true
             }, // kota tempat lahir
             main_address_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: true
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
             }, // relasi ke address_list.id
             secondary_address_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: true
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
             }, // relasi ke address_list.id
             is_indonesia: {
                 type: Boolean,
@@ -97,7 +103,7 @@ class CustomerListModel extends PostgresORM {
     get index () {
         return {
             primary: {
-                keys: {id: -1},
+                keys: {_id: -1},
                 uniq: true
             },
             identity: { // untuk mencari data berdasarkan no ktp/sim/passport

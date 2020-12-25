@@ -19,10 +19,16 @@ class UKMListModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            _id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
             account_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
             }, // relasi ke transactions.id
             ukm_name: {
@@ -38,9 +44,9 @@ class UKMListModel extends PostgresORM {
                 isNullable: false
             },
             address_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
             },
             address_stars_rate: {
@@ -67,7 +73,7 @@ class UKMListModel extends PostgresORM {
     get index () {
         return {
             primary: {
-                keys: {id: -1},
+                keys: {_id: -1},
                 uniq: true
             },
             name: { // untuk searching

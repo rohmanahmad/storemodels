@@ -19,6 +19,12 @@ class BankTransactionModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            _id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
             bank_from_name: {
                 type: String,
                 stringType: 'bpchar',
@@ -62,9 +68,9 @@ class BankTransactionModel extends PostgresORM {
                 isNullable: false
             },
             approved_by_id: { // relasi ke user_account yg rolenya sebagai admin / operation
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
             },
             approved_at: { // relasi ke user_account yg rolenya sebagai admin / operation
@@ -91,7 +97,7 @@ class BankTransactionModel extends PostgresORM {
     get index () {
         return {
             primary: {
-                keys: {id: -1},
+                keys: {_id: -1},
                 uniq: true
             },
             date: { // untuk sorting kebanyakan DESC

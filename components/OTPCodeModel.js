@@ -19,10 +19,16 @@ class OTPCodeModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            _id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
             user_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
             },
             otp_code: {
@@ -67,7 +73,7 @@ class OTPCodeModel extends PostgresORM {
     get index () {
         return {
             primary: {
-                keys: {id: -1},
+                keys: {_id: -1},
                 uniq: true
             },
             otp_search: { // untuk sorting kebanyakan DESC

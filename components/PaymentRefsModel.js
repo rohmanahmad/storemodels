@@ -19,6 +19,12 @@ class PaymentRefsModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            _id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
             nominal: {
                 type: Number,
                 stringType: 'int4',
@@ -32,15 +38,15 @@ class PaymentRefsModel extends PostgresORM {
                 isNullable: false
             },
             e_wallet_transaction_id: { // relasi ke e_wallet_transaction
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
             },
             bank_transaction_id: { // relasi ke bank_transaction
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
             },
             created_at: {
@@ -61,7 +67,7 @@ class PaymentRefsModel extends PostgresORM {
     get index () {
         return {
             primary: {
-                keys: {id: -1},
+                keys: {_id: -1},
                 uniq: true
             },
             date: { // untuk sorting kebanyakan DESC

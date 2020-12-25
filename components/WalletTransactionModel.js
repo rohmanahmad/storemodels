@@ -23,22 +23,28 @@ class WalletTransactionModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
-            wallet_id: { // product, store or other
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+            _id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
-            }, 
-            ewallet_transaction_type: {// foreign-key dari product_list
+            },
+            ewallet_transaction_type: { // topup, transfer, 
                 type: String,
                 stringType: 'bpchar',
                 size: 20,
                 isNullable: false
             }, 
-            ewall_send_to_ewallet_id: {// foreign-key dari ukm_list
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+            ewall_send_from_id: { // sender / pengirim ID
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            }, 
+            ewall_send_to_ewallet_id: { // tujuan ID
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
             },
             ewall_transaction_nominal: {
@@ -47,16 +53,16 @@ class WalletTransactionModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
-            ewall_payment_method: {
+            ewall_payment_method: { // tranfer bank
                 type: String,
                 stringType: 'bpchar',
                 size: 20,
                 isNullable: false
             },
-            ewall_approved_by_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+            ewall_approved_by_id: { // admin ID
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
             },
             ewall_pre_transaction_credits: { // sebelum transaksi
@@ -101,7 +107,7 @@ class WalletTransactionModel extends PostgresORM {
     get index () {
         return {
             primary: {
-                keys: {id: -1},
+                keys: {_id: -1},
                 uniq: true
             },
             date: { // untuk sorting kebanyakan DESC

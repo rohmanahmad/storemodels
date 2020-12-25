@@ -19,6 +19,12 @@ class AddressListModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            _id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
             is_default: {
                 type: Number,
                 stringType: 'int4',
@@ -38,21 +44,21 @@ class AddressListModel extends PostgresORM {
                 isNullable: false
             },
             location_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
             },
             ukm_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: true
             }, // relasi ke ukm.id
             customer_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: true
             }, // relasi ke customer.id
             created_at: {
@@ -73,7 +79,7 @@ class AddressListModel extends PostgresORM {
     get index () {
         return {
             primary: {
-                keys: {id: -1},
+                keys: {_id: -1},
                 uniq: true
             },
             name: { // untuk mencari data autocomplete

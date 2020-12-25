@@ -19,6 +19,12 @@ class ConversationListModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            _id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
             conversation_date: {
                 type: Date,
                 stringType: 'date',
@@ -38,15 +44,15 @@ class ConversationListModel extends PostgresORM {
                 isNullable: false
             },
             customer_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
             },
             ukm_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
             },
             created_at: {
@@ -67,7 +73,7 @@ class ConversationListModel extends PostgresORM {
     get index () {
         return {
             primary: {
-                keys: {id: -1},
+                keys: {_id: -1},
                 uniq: true
             },
             sorting_by_date: { // sort chat by date

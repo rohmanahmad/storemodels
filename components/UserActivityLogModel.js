@@ -19,6 +19,12 @@ class UsersModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            _id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
             from_ip: {
                 type: String,
                 stringType: 'bpchar',
@@ -50,7 +56,7 @@ class UsersModel extends PostgresORM {
     get index () {
         return {
             primary: {
-                keys: {id: -1},
+                keys: {_id: -1},
                 uniq: true
             },
             type: { // untuk search by type

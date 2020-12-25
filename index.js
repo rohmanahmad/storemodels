@@ -6,6 +6,7 @@ module.exports = {
     ActivityLogModel: require('./components/ActivityLogModel'),
     AddressListModel: require('./components/AddressListModel'),
     AvailableShipping: require('./components/AvailableShippingModel'),
+    BankTransactionModel: require('./components/BankTransactionModel'),
     CategoriesModel: require('./components/CategoriesModel'),
     ConversationListModel: require('./components/ConversationListModel'),
     CustomerListModel: require('./components/CustomerListModel'),

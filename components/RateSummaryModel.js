@@ -23,6 +23,12 @@ class ProductRateSummary extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            _id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
             rate_type: { // product, store or other
                 type: String,
                 stringType: 'bpchar',
@@ -30,16 +36,16 @@ class ProductRateSummary extends PostgresORM {
                 isNullable: false
             }, 
             product_id: {// foreign-key dari product_list
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: true
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
             }, 
             ukm_id: {// foreign-key dari ukm_list
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: true
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
             },
             stars_level: {
                 type: Number,
@@ -65,7 +71,7 @@ class ProductRateSummary extends PostgresORM {
     get index () {
         return {
             primary: {
-                keys: {id: -1},
+                keys: {_id: -1},
                 uniq: true
             },
             product: {

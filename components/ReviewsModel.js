@@ -19,6 +19,12 @@ class ProductsModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            _id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
             /* available groups: product, ukm,  */
             review_group: {
                 type: String,
@@ -28,17 +34,17 @@ class ProductsModel extends PostgresORM {
             },
             /* reerence to product_table or ukm or others */
             reference_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
             }, // as foreign-key to product_list
             // untuk review tidak memerlukan ukm_id, krn secara default, ukm tidak bisa tulis review, hanya bisa reply aja.
             // untuk penanganan menggunakan product_id
             customer_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
             }, // as foreign-key to customer_list
             review_text: {
@@ -47,12 +53,6 @@ class ProductsModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             }, // dibatasi 255 karakter
-            review_images_url: {
-                type: String,
-                stringType: 'text',
-                size: 0,
-                isNullable: true
-            }, // dipisahkan tanda koma. metok 4 images
             created_at: {
                 type: Date,
                 stringType: 'timestamp',
@@ -71,11 +71,11 @@ class ProductsModel extends PostgresORM {
     get index () {
         return {
             primary: {
-                keys: {id: -1},
+                keys: {_id: -1},
                 uniq: true
             },
             product: { // mencari review by productid dan customerid serta ukmid
-                keys: {product_id: -1, customer_id: 1},
+                keys: {reference_id: -1, customer_id: 1},
                 uniq: false
             },
             date: { // untuk sorting kebanyakan DESC

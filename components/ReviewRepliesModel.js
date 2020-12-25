@@ -19,23 +19,29 @@ class ProductReviewRepliesModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            _id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
             review_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
             }, // relasi ke product_review.id
             customer_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: true
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
             }, // relasi ke customer.id
             ukm_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: true
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
             }, // relasi ke ukm.id
             reply_text: {
                 type: String,
@@ -67,7 +73,7 @@ class ProductReviewRepliesModel extends PostgresORM {
     get index () {
         return {
             primary: {
-                keys: {id: -1},
+                keys: {_id: -1},
                 uniq: true
             },
             review_id: { // sort chat by date

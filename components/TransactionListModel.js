@@ -19,14 +19,26 @@ class TransactionListModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            _id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
             user_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: true
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
+            ukm_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
             },
             /* 
-            item_total: semua item uniq
+            item_total: total semua item uniq
             */
             item_total: {
                 type: Number,
@@ -72,16 +84,25 @@ class TransactionListModel extends PostgresORM {
             },
             /* 
             statuses:
-            0: pending (artinya, masih di keranjang)
-            1: (on-packing) selesai (sudah melakukan pembayaran, tp masih blm diterima barangnya)
-            2: (awaiting) barang sedang dikirimkan, dan pelanggan masih menunggu barang belanjaan tsb
-            3: (success) barang sudah di terima oleh pelanggan
-            50: (return) barang dikembalikan atas beberapa alasan
-            60: (cancel) pesanan di batalkan krn alasan tertentu
+            0: 'pending', // (artinya, masih di keranjang)
+            1: 'vendor_waiting', // pesanan masuk pada vendor, tp blm di terima (lagi offline)
+            2: 'vendor_approved', // pesanan sudah di terima vendor, tp blm di packing
+            3: 'packing', // selesai (sudah melakukan pembayaran, tp masih blm diterima barangnya)
+            4: 'awaiting_product', // barang sedang dikirimkan, dan pelanggan masih menunggu barang belanjaan tsb
+            5: 'success', // barang sudah di terima oleh pelanggan
+            6: 'hold', // orderan tidak bisa di terima / di proses, krn status ini kemungkinan krn ada permintaan pelanggan untuk pengubahan orderan / alamat
+            50: 'return', // barang dikembalikan atas beberapa alasan
+            60: 'cancel', // pesanan di batalkan krn alasan tertentu
             */
             trx_status: {
                 type: Number,
                 stringType: 'int4',
+                size: 0,
+                isNullable: true
+            },
+            changes_histories: {
+                type: String,
+                stringType: 'text',
                 size: 0,
                 isNullable: true
             },
@@ -103,8 +124,16 @@ class TransactionListModel extends PostgresORM {
     get index () {
         return {
             primary: {
-                keys: {id: -1},
+                keys: {_id: -1},
                 uniq: true
+            },
+            ukm_id: {
+                keys: {ukm_id: -1},
+                uniq: false
+            },
+            active_trx: {
+                keys: {user_id: -1, trx_status: 1},
+                uniq: false
             },
             date: { // untuk sorting
                 keys: {created_at: -1},

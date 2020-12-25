@@ -20,13 +20,19 @@ class LocationModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            _id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
             location_name: {
                 type: String,
                 stringType: 'bpchar',
                 size: 100,
                 isNullable: false
             },
-            kecamatan_id: {
+            kecamatan_id: { // untuk location tidak perlu pakai md5
                 type: Number,
                 stringType: 'int4',
                 size: 0,

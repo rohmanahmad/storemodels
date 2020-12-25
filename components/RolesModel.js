@@ -19,6 +19,12 @@ class Roles extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            _id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
             roles_name: { // roles_name berupa admin, client, vendor
                 type: String,
                 stringType: 'bpchar',
@@ -55,7 +61,7 @@ class Roles extends PostgresORM {
     get index () {
         return {
             primary: {
-                keys: {id: -1},
+                keys: {_id: -1},
                 uniq: true
             },
             name: { // mencari dengan spesifik server dan jenis

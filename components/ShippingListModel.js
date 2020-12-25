@@ -19,6 +19,12 @@ class ShippingListModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            _id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
             shipping_name: {
                 type: String,
                 stringType: 'bpchar',
@@ -26,9 +32,9 @@ class ShippingListModel extends PostgresORM {
                 isNullable: false
             },
             shipping_company_id: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
             },
             is_active: {
@@ -55,7 +61,7 @@ class ShippingListModel extends PostgresORM {
     get index () {
         return {
             primary: {
-                keys: {id: -1},
+                keys: {_id: -1},
                 uniq: true
             },
             search_autocomplete: { // search shipping
