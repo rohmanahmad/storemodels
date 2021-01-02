@@ -29,13 +29,13 @@ class CustomerListModel extends PostgresORM {
                 type: String,
                 stringType: 'bpchar',
                 size: 10,
-                isNullable: false
+                isNullable: true
             }, // tuan, nyonya, agan, sista
             customer_fullname: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: false
+                isNullable: true
             },
             is_verified: {
                 type: Boolean,
@@ -71,13 +71,13 @@ class CustomerListModel extends PostgresORM {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: false
+                isNullable: true
             }, // relasi ke address_list.id
             secondary_address_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: false
+                isNullable: true
             }, // relasi ke address_list.id
             is_indonesia: {
                 type: Boolean,

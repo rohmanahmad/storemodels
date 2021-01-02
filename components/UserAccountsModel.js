@@ -62,7 +62,7 @@ class UserAccountsModel extends PostgresORM {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: false
+                isNullable: true
             },
             /* setiap kali pendaftaran user baru, maka otomatis terdaftar sebagai customer sebagai default */
             /* jika user tsb juga sebagai mitra, maka ukm id ada isinya */
@@ -70,7 +70,7 @@ class UserAccountsModel extends PostgresORM {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: false
+                isNullable: true
             },
             user_role: {
                 type: String,
