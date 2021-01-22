@@ -25,6 +25,12 @@ class ImagesGalleryModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
+            account_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
             second_id: {
                 type: String,
                 stringType: 'bpchar',
@@ -48,6 +54,7 @@ class ImagesGalleryModel extends PostgresORM {
             /* 
             image_group: 
                 - thumbnail
+                - image
             */
             image_group: {
                 type: String,
