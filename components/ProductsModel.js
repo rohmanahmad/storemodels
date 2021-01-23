@@ -100,23 +100,23 @@ class ProductsModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
-            product_location: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: false
-            },
             product_views_total: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: true
             },
             product_stars_rate: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: true
+            },
+            product_tax: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: true
             },
             created_at: {
                 type: Date,

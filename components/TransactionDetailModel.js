@@ -73,6 +73,18 @@ class TransactionDetailModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            trx_product_note: {
+                type: String,
+                stringType: 'bpchar',
+                size: 100,
+                isNullable: true
+            },
+            trx_product_tax_total: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: true
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',

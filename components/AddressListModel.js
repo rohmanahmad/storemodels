@@ -25,6 +25,12 @@ class AddressListModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
+            user_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: true
+            },
             is_default: {
                 type: Number,
                 stringType: 'int4',
@@ -36,31 +42,36 @@ class AddressListModel extends PostgresORM {
                 stringType: 'bpchar',
                 size: 30,
                 isNullable: false
+                // example: Home / Office / Apartement / Etc
             },
-            address_street: {
+            address_street_name: {
                 type: String,
                 stringType: 'text',
                 size: 0,
                 isNullable: false
+                // example: Jalan Simpang Sumatra
+            },
+            address_home_block: {
+                type: String,
+                stringType: 'bpchar',
+                size: 5,
+                isNullable: false
+                // example: VIC / 6c
+            },
+            address_home_number: {
+                type: Number,
+                stringType: 'int4',
+                size: 2,
+                isNullable: false
+                // example: 8 / 10 /100
             },
             location_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
                 isNullable: false
+                // relation to locations table
             },
-            ukm_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: true
-            }, // relasi ke ukm.id
-            customer_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: true
-            }, // relasi ke customer.id
             created_at: {
                 type: Date,
                 stringType: 'timestamp',

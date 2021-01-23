@@ -35,7 +35,7 @@ class TransactionListModel extends PostgresORM {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: false
+                isNullable: true
             },
             /* 
             item_total: total semua item uniq
@@ -77,6 +77,30 @@ class TransactionListModel extends PostgresORM {
             hasil pengurangan dari jumlah harga - jumlah discount
             */
             total_invoice: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: true
+            },
+            shipping_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 20,
+                isNullable: true
+            },
+            shipping_price: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: true
+            },
+            tax_total: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: true
+            },
+            admin_fee: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
