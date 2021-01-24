@@ -31,10 +31,16 @@ class CustomerListModel extends PostgresORM {
                 size: 10,
                 isNullable: true
             }, // tuan, nyonya, agan, sista
-            customer_fullname: {
+            customer_firstname: {
                 type: String,
                 stringType: 'bpchar',
-                size: 40,
+                size: 30,
+                isNullable: true
+            },
+            customer_lastname: {
+                type: String,
+                stringType: 'bpchar',
+                size: 30,
                 isNullable: true
             },
             is_verified: {
@@ -42,13 +48,21 @@ class CustomerListModel extends PostgresORM {
                 stringType: 'bool',
                 size: 0,
                 isNullable: false
-            }, // verifikasi dilakukan untuk menentukan apakah real atau enggak
-            verification_photo: {
+            },
+            // verifikasi dilakukan untuk menentukan apakah real atau enggak
+            // foto bersama ktp untuk prosess verifikasi
+            verification_photo_id: {
                 type: String,
-                stringType: 'text',
-                size: 0,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: true
-            }, // foto bersama ktp untuk prosess verifikasi
+            },
+            profile_photo_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: true
+            },
             identity_no: {
                 type: String,
                 stringType: 'bpchar',

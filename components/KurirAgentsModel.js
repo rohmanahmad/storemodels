@@ -2,9 +2,9 @@
 
 const PostgresORM = require('postgresql-orm')
 
-class ImagesGalleryModel extends PostgresORM {
+class KurirAgentsModel extends PostgresORM {
     get tableName () {
-        return 'images_gallery'
+        return 'kurir_agent'
     }
 
     get connection () {
@@ -25,68 +25,62 @@ class ImagesGalleryModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            account_id: {
+            user_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
                 isNullable: false
             },
-            uploader_id: {
+            company_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
                 isNullable: false
             },
-            is_public: {
-                type: Boolean,
-                stringType: 'bool',
-                size: 0,
-                isNullable: false
-            },
-            /* 
-            available type:
-                - product
-                - profile-avatar
-                - profile-wallpaper
-                - store-avatar
-                - category
-                - verification-photo
-            */
-            image_type: {
-                type: String,
-                stringType: 'bpchar',
-                size: 10,
-                isNullable: false
-            },
-            /* 
-            image_group: 
-                - thumbnail
-                - original
-            */
-            image_group: {
-                type: String,
-                stringType: 'bpchar',
-                size: 20,
-                isNullable: true
-            },
-            image_name: {
+            agent_firstname: {
                 type: String,
                 stringType: 'bpchar',
                 size: 30,
                 isNullable: false
-            }, // akan di tempatkan pada alt di tag <img>
-            image_url: {
+            },
+            agent_lastname: {
                 type: String,
-                stringType: 'text',
+                stringType: 'bpchar',
+                size: 30,
+                isNullable: true
+            },
+            profile_gallery_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: true
+            },
+            // kurir id / hanya untuk kurir lokal aja. jika kurir luar, akan ditulis global
+            address_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: true
+            },
+            // reputation : 0 - 5
+            reputation: {
+                type: Number,
+                stringType: 'int4',
                 size: 0,
-                isNullable: false
-            }, // dipisahkan koma. dibatasi max 4 image
-            image_index: {
+                isNullable: true
+            },
+            /* 
+            * - 0 : nonactive / need confirmation
+            * - 1 : active / available
+            * - 2 : banned / not available in time period
+            * - 3 : blocked / black list / not-available 
+            */
+            status: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
                 isNullable: false
-            }, // mulai dari 0: defautl 1 gambar ke2 dst
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',
@@ -108,29 +102,19 @@ class ImagesGalleryModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
-            by_account: {
-                keys: {account_id: 1},
+            search_by_name: {
+                keys: {agent_name: 1},
                 uniq: false
             },
-            by_uploader: {
-                keys: {uploader_id: 1},
-                uniq: false
-            },
-            by_type: {
-                keys: {type_id: 1},
-                uniq: false
-            },
-            date: { // untuk sorting kebanyakan DESC
+            date: { // untuk sorting
                 keys: {created_at: -1},
                 uniq: false
             }
         }
     }
-
-    /* functions */
 }
 
 module.exports = function (opt = {}) {
-    const model = new ImagesGalleryModel(opt)
+    const model = new KurirAgentsModel(opt)
     return model
 }

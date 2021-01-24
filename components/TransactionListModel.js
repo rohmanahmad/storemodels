@@ -82,10 +82,16 @@ class TransactionListModel extends PostgresORM {
                 size: 0,
                 isNullable: true
             },
+            address_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: true
+            },
             shipping_id: {
                 type: String,
                 stringType: 'bpchar',
-                size: 20,
+                size: 40,
                 isNullable: true
             },
             shipping_price: {

@@ -2,9 +2,9 @@
 
 const PostgresORM = require('postgresql-orm')
 
-class UKMListModel extends PostgresORM {
+class TrackingOrdeModel extends PostgresORM {
     get tableName () {
-        return 'ukm_list'
+        return 'tracking_order'
     }
 
     get connection () {
@@ -25,34 +25,23 @@ class UKMListModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            account_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: false
-            }, // relasi ke transactions.id
-            ukm_name: {
-                type: String,
-                stringType: 'bpchar',
-                size: 30,
-                isNullable: false
-            }, // relase ke product_list.id
-            store_name: {
-                type: String,
-                stringType: 'bpchar',
-                size: 30,
-                isNullable: false
-            },
-            address_id: {
+            trx_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
                 isNullable: false
             },
-            stars_rate: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+            progress_status: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
+            // kurir id / hanya untuk kurir lokal aja. jika kurir luar, akan ditulis global
+            agent_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
             },
             created_at: {
@@ -76,8 +65,12 @@ class UKMListModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
-            name: { // untuk searching
-                keys: {ukm_name: -1},
+            search_by_trx: {
+                keys: {trx_id: 1},
+                uniq: false
+            },
+            search_by_kurir: {
+                keys: {trx_id: 1},
                 uniq: false
             },
             date: { // untuk sorting
@@ -89,6 +82,6 @@ class UKMListModel extends PostgresORM {
 }
 
 module.exports = function (opt = {}) {
-    const model = new UKMListModel(opt)
+    const model = new TrackingOrdeModel(opt)
     return model
 }

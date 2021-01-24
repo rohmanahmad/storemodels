@@ -32,11 +32,17 @@ class CategoriesModel extends PostgresORM {
                 isNullable: false
             },
             parent_id: { // untuk ini biarkan memakai Id (number) krn jarang di lakukan oleh user secara langsung
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: false
             }, // yaitu parentid masih dari tabel yg sama
+            category_gallery_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
             category_name: {
                 type: String,
                 stringType: 'bpchar',

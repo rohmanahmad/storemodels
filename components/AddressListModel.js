@@ -32,9 +32,9 @@ class AddressListModel extends PostgresORM {
                 isNullable: true
             },
             is_default: {
-                type: Number,
-                stringType: 'int4',
-                size: 1,
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
                 isNullable: false
             },
             address_name: {

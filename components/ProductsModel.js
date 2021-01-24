@@ -118,6 +118,30 @@ class ProductsModel extends PostgresORM {
                 size: 0,
                 isNullable: true
             },
+            image_1_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: true
+            },
+            image_2_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: true
+            },
+            image_3_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: true
+            },
+            image_4_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: true
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',

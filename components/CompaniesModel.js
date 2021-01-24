@@ -2,9 +2,9 @@
 
 const PostgresORM = require('postgresql-orm')
 
-class UKMListModel extends PostgresORM {
+class CompaniesModel extends PostgresORM {
     get tableName () {
-        return 'ukm_list'
+        return 'company_list'
     }
 
     get connection () {
@@ -25,35 +25,24 @@ class UKMListModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            account_id: {
+            company_name: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: false
-            }, // relasi ke transactions.id
-            ukm_name: {
-                type: String,
-                stringType: 'bpchar',
-                size: 30,
-                isNullable: false
-            }, // relase ke product_list.id
-            store_name: {
-                type: String,
-                stringType: 'bpchar',
-                size: 30,
                 isNullable: false
             },
             address_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: false
+                isNullable: true
             },
-            stars_rate: {
+            // kurir id / hanya untuk kurir lokal aja. jika kurir luar, akan ditulis global
+            reputation: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: true
             },
             created_at: {
                 type: Date,
@@ -76,8 +65,8 @@ class UKMListModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
-            name: { // untuk searching
-                keys: {ukm_name: -1},
+            search_by_name: {
+                keys: {company_name: 1},
                 uniq: false
             },
             date: { // untuk sorting
@@ -89,6 +78,6 @@ class UKMListModel extends PostgresORM {
 }
 
 module.exports = function (opt = {}) {
-    const model = new UKMListModel(opt)
+    const model = new CompaniesModel(opt)
     return model
 }
