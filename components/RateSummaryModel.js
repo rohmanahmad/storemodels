@@ -35,13 +35,7 @@ class ProductRateSummary extends PostgresORM {
                 size: 20,
                 isNullable: false
             }, 
-            product_id: {// foreign-key dari product_list
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: false
-            }, 
-            ukm_id: {// foreign-key dari ukm_list
+            reference_id: {// product_id, ukm_id, etc
                 type: String,
                 stringType: 'bpchar',
                 size: 40,

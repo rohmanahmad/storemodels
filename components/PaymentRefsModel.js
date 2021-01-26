@@ -25,6 +25,12 @@ class PaymentRefsModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
+            uniq_code: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
             nominal: {
                 type: Number,
                 stringType: 'int4',

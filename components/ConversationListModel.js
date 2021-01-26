@@ -25,12 +25,6 @@ class ConversationListModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            conversation_date: {
-                type: Date,
-                stringType: 'date',
-                size: 0,
-                isNullable: false
-            },
             conversation_content: {
                 type: String,
                 stringType: 'text',
@@ -41,19 +35,25 @@ class ConversationListModel extends PostgresORM {
                 type: String,
                 stringType: 'text',
                 size: 0,
-                isNullable: false
+                isNullable: true
             },
             customer_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: false
+                isNullable: true
+            },
+            admin_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: true
             },
             ukm_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: false
+                isNullable: true
             },
             created_at: {
                 type: Date,
@@ -76,12 +76,16 @@ class ConversationListModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
-            sorting_by_date: { // sort chat by date
-                keys: {conversation_date: -1},
+            chats1: { // get chats conversation
+                keys: {customer_id: 1, ukm_id: 1},
                 uniq: false
             },
-            chats: { // get chats conversation
-                keys: {customer_id: 1, ukm_id: 1},
+            chats2: { // get chats conversation
+                keys: {customer_id: 1, admin_id: 1},
+                uniq: false
+            },
+            chats3: { // get chats conversation
+                keys: {admin_id: 1, ukm_id: 1},
                 uniq: false
             },
             date: { // untuk sorting

@@ -55,14 +55,14 @@ class AddressListModel extends PostgresORM {
                 type: String,
                 stringType: 'bpchar',
                 size: 5,
-                isNullable: false
+                isNullable: true
                 // example: VIC / 6c
             },
             address_home_number: {
                 type: Number,
                 stringType: 'int4',
                 size: 2,
-                isNullable: false
+                isNullable: true
                 // example: 8 / 10 /100
             },
             location_id: {

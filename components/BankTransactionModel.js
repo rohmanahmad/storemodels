@@ -53,13 +53,13 @@ class BankTransactionModel extends PostgresORM {
                 type: String,
                 stringType: 'text',
                 size: 0,
-                isNullable: false
+                isNullable: true
             },
             bank_sender_attachment: {
                 type: String,
                 stringType: 'text',
                 size: 0,
-                isNullable: false
+                isNullable: true
             },
             nominal: {
                 type: Number,
@@ -71,13 +71,13 @@ class BankTransactionModel extends PostgresORM {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: false
+                isNullable: true
             },
             approved_at: { // relasi ke user_account yg rolenya sebagai admin / operation
                 type: Date,
                 stringType: 'timestamp',
                 size: 0,
-                isNullable: false
+                isNullable: true
             },
             created_at: {
                 type: Date,

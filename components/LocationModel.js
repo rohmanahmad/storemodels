@@ -36,19 +36,19 @@ class LocationModel extends PostgresORM {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: false
+                isNullable: true
             },
             kab_kota_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: false
+                isNullable: true
             },
             propinsi_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: false
+                isNullable: true
             },
             latitude: {
                 type: String,
@@ -82,6 +82,18 @@ class LocationModel extends PostgresORM {
             primary: {
                 keys: { id: -1 },
                 uniq: true
+            },
+            kecamatan_id: { // untuk sorting kebanyakan DESC
+                keys: { kecamatan_id: 1 },
+                uniq: false
+            },
+            kab_kota_id: { // untuk sorting kebanyakan DESC
+                keys: { kab_kota_id: 1 },
+                uniq: false
+            },
+            propinsi_id: { // untuk sorting kebanyakan DESC
+                keys: { propinsi_id: 1 },
+                uniq: false
             },
             location_name: { // untuk sorting kebanyakan DESC
                 keys: { location_name: 1 },

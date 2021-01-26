@@ -35,13 +35,13 @@ class UsersModel extends PostgresORM {
                 type: String,
                 stringType: 'bpchar',
                 size: 20,
-                isNullable: false
+                isNullable: true
             },
             data: {
                 type: Object,
                 stringType: 'json',
                 size: 0,
-                isNullable: false
+                isNullable: true
             },
             created_at: {
                 type: Date,

@@ -35,13 +35,13 @@ class CategoriesModel extends PostgresORM {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: false
+                isNullable: true
             }, // yaitu parentid masih dari tabel yg sama
             category_gallery_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: false
+                isNullable: true
             },
             category_name: {
                 type: String,
@@ -53,7 +53,7 @@ class CategoriesModel extends PostgresORM {
                 type: String,
                 stringType: 'text',
                 size: 0,
-                isNullable: false
+                isNullable: true
             },
             created_at: {
                 type: Date,

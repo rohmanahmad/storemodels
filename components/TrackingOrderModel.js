@@ -31,14 +31,14 @@ class TrackingOrdeModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            progress_status: {
+            // kurir id / hanya untuk kurir lokal aja. jika kurir luar, akan ditulis global
+            agent_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
                 isNullable: false
             },
-            // kurir id / hanya untuk kurir lokal aja. jika kurir luar, akan ditulis global
-            agent_id: {
+            progress_status: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,

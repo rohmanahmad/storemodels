@@ -31,7 +31,7 @@ class ProductFavoritesModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            customer_id: { // bank_transfer / credits
+            customer_id: { // khusus customer
                 type: String,
                 stringType: 'bpchar',
                 size: 40,

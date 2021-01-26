@@ -47,7 +47,7 @@ class EWalletModel extends PostgresORM {
                 type: String,
                 stringType: 'text',
                 size: 0,
-                isNullable: false
+                isNullable: true
             },
             created_at: {
                 type: Date,
