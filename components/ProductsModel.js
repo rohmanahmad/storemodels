@@ -52,6 +52,12 @@ class ProductsModel extends PostgresORM {
                 size: 40,
                 isNullable: true
             },
+            location_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
             category_id: {
                 type: String,
                 stringType: 'bpchar',
@@ -165,6 +171,10 @@ class ProductsModel extends PostgresORM {
             },
             category: { // digunakan untuk pencarian by category
                 keys: {category_id: 1},
+                uniq: false
+            },
+            location: { // digunakan untuk pencarian by location
+                keys: {location_id: 1},
                 uniq: false
             },
             productname: { // digunakan untuk pencarian by keyword
