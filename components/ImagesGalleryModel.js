@@ -117,7 +117,7 @@ class ImagesGalleryModel extends PostgresORM {
                 uniq: false
             },
             by_type: {
-                keys: {type_id: 1},
+                keys: {image_type: 1},
                 uniq: false
             },
             date: { // untuk sorting kebanyakan DESC

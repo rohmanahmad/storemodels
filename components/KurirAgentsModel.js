@@ -103,7 +103,7 @@ class KurirAgentsModel extends PostgresORM {
                 uniq: true
             },
             search_by_name: {
-                keys: {agent_name: 1},
+                keys: {agent_firstname: 1},
                 uniq: false
             },
             date: { // untuk sorting
