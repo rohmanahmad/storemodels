@@ -69,7 +69,7 @@ class RateSummaryModel extends PostgresORM {
                 uniq: true
             },
             product: {
-                keys: {product_id: 1},
+                keys: {reference_id: 1},
                 uniq: false
             },
             date: { // untuk sorting kebanyakan DESC
