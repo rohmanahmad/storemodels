@@ -6,7 +6,7 @@ const PostgresORM = require('postgresql-orm')
     tabel ini tidak diubah secara langsung oleh pemilik maupun admin.
     ini otomatis diubah berdasarkan data dari review dan dihitung menggunakan formula
 */
-class ProductRateSummary extends PostgresORM {
+class RateSummaryModel extends PostgresORM {
     get tableName () {
         return 'rate_summary'
     }
@@ -83,6 +83,6 @@ class ProductRateSummary extends PostgresORM {
 }
 
 module.exports = function (opt = {}) {
-    const model = new ProductRateSummary(opt)
+    const model = new RateSummaryModel(opt)
     return model
 }

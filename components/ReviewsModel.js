@@ -2,7 +2,7 @@
 
 const PostgresORM = require('postgresql-orm')
 
-class ProductsModel extends PostgresORM {
+class ReviewsModel extends PostgresORM {
     get tableName () {
         return 'reviews'
     }
@@ -86,6 +86,6 @@ class ProductsModel extends PostgresORM {
 }
 
 module.exports = function (opt = {}) {
-    const model = new ProductsModel(opt)
+    const model = new ReviewsModel(opt)
     return model
 }

@@ -2,7 +2,7 @@
 
 const PostgresORM = require('postgresql-orm')
 
-class UsersModel extends PostgresORM {
+class ActivityLogModel extends PostgresORM {
     get tableName () {
         return 'application_events_log'
     }
@@ -76,6 +76,6 @@ class UsersModel extends PostgresORM {
 }
 
 module.exports = function (opt = {}) {
-    const model = new UsersModel(opt)
+    const model = new ActivityLogModel(opt)
     return model
 }

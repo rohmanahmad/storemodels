@@ -2,7 +2,7 @@
 
 const PostgresORM = require('postgresql-orm')
 
-class UsersModel extends PostgresORM {
+class UserActivityModel extends PostgresORM {
     get tableName () {
         return 'user_activities'
     }
@@ -25,30 +25,77 @@ class UsersModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            from_ip: {
+            zone: {
                 type: String,
                 stringType: 'bpchar',
                 size: 20,
                 isNullable: false
             },
-            // examples: searching, checkout, topup, many others
-            activity_type: {
-                type: 'string',
+            method: {
+                type: String,
                 stringType: 'bpchar',
                 size: 20,
                 isNullable: false
+            },
+            endpoint: {
+                type: String,
+                stringType: 'bpchar',
+                size: 200,
+                isNullable: false
+            },
+            type: {
+                type: String,
+                stringType: 'bpchar',
+                size: 20,
+                isNullable: false
+            },
+            server_ip: {
+                type: String,
+                stringType: 'bpchar',
+                size: 20,
+                isNullable: true
+            },
+            from_ip: {
+                type: String,
+                stringType: 'bpchar',
+                size: 20,
+                isNullable: true
+            },
+            userid: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: true
+            },
+            user_role: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: true
             },
             data: {
                 type: Object,
                 stringType: 'json',
                 size: 0,
-                isNullable: false
+                isNullable: true
             },
-            created_at: {
+            time_request: {
                 type: Date,
                 stringType: 'timestamp',
                 size: 0,
                 isNullable: false
+            },
+            time_response: {
+                type: Date,
+                stringType: 'timestamp',
+                size: 0,
+                isNullable: true
+            },
+            total_time: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: true
             }
         }
     }
@@ -59,17 +106,30 @@ class UsersModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
-            type: { // untuk search by type
-                keys: {activity_type: 1}
+            server: { // mencari dengan spesifik server dan jenis
+                keys: {server_ip: -1, type: -1},
+                uniq: false
             },
-            date: { // untuk sorting kebanyakan DESC
-                keys: {created_at: -1}
+            userid: { // mencari dengan spesifik server dan jenis
+                keys: {userid: -1},
+                uniq: false
+            },
+            zone: { // mencari dengan spesifik server dan jenis
+                keys: {zone: 1},
+                uniq: false
+            },
+            from_ip: { // mencari dengan spesifik server dan jenis
+                keys: {from_ip: 1},
+                uniq: false
+            },
+            total_time_execution: { // untuk sorting kebanyakan DESC
+                keys: {total_time: -1}
             }
         }
     }
 }
 
 module.exports = function (opt = {}) {
-    const model = new UsersModel(opt)
+    const model = new UserActivityModel(opt)
     return model
 }

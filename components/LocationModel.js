@@ -50,6 +50,12 @@ class LocationModel extends PostgresORM {
                 size: 40,
                 isNullable: true
             },
+            postal_code: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: true
+            },
             latitude: {
                 type: String,
                 stringType: 'bpchar',

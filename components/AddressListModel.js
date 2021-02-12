@@ -72,6 +72,27 @@ class AddressListModel extends PostgresORM {
                 isNullable: false
                 // relation to locations table
             },
+            recipest_name: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+                // relation to locations table
+            },
+            recipest_phonenumber: {
+                type: String,
+                stringType: 'bpchar',
+                size: 20,
+                isNullable: false
+                // relation to locations table
+            },
+            recipest_email: {
+                type: String,
+                stringType: 'bpchar',
+                size: 100,
+                isNullable: true
+                // relation to locations table
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',
@@ -95,6 +116,10 @@ class AddressListModel extends PostgresORM {
             },
             name: { // untuk mencari data autocomplete
                 keys: {address_name: 1},
+                uniq: false
+            },
+            name: { // untuk mencari data autocomplete
+                keys: {recipest_name: 1},
                 uniq: false
             },
             date: { // untuk sorting
