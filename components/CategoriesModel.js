@@ -55,6 +55,19 @@ class CategoriesModel extends PostgresORM {
                 size: 0,
                 isNullable: true
             },
+            category_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
+            trash_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false,
+                default: 0
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',
@@ -75,6 +88,10 @@ class CategoriesModel extends PostgresORM {
             primary: {
                 keys: {_id: -1},
                 uniq: true
+            },
+            trash_status: {
+                keys: {trash_status: -1},
+                uniq: false
             },
             date: { // untuk sorting kebanyakan DESC
                 keys: {created_at: -1}

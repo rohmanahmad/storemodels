@@ -55,6 +55,13 @@ class OTPCodeModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            trash_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false,
+                default: 0
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',
@@ -75,6 +82,10 @@ class OTPCodeModel extends PostgresORM {
             primary: {
                 keys: {_id: -1},
                 uniq: true
+            },
+            trash_status: {
+                keys: {trash_status: -1},
+                uniq: false
             },
             otp_search: { // untuk sorting kebanyakan DESC
                 keys: {otp_code: 1, otp_type: 1, valid_until: -1},

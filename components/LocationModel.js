@@ -68,6 +68,13 @@ class LocationModel extends PostgresORM {
                 size: 20,
                 isNullable: true
             },
+            trash_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false,
+                default: 0
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',

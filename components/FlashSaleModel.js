@@ -55,6 +55,19 @@ class FlashSaleModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
+            flash_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
+            trash_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false,
+                default: 0
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',

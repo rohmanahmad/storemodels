@@ -55,6 +55,19 @@ class ConversationListModel extends PostgresORM {
                 size: 40,
                 isNullable: true
             },
+            conversation_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
+            trash_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false,
+                default: 0
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',
@@ -75,6 +88,10 @@ class ConversationListModel extends PostgresORM {
             primary: {
                 keys: {_id: -1},
                 uniq: true
+            },
+            trash_status: {
+                keys: {trash_status: -1},
+                uniq: false
             },
             chats1: { // get chats conversation
                 keys: {customer_id: 1, ukm_id: 1},

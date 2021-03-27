@@ -25,6 +25,7 @@ module.exports = {
     ReviewsModel: require('./components/ReviewsModel'),
     RolesModel: require('./components/RolesModel'),
     ShippingListModel: require('./components/ShippingListModel'),
+    TasksModel: require('./components/TasksModel'),
     TransactionDetailModel: require('./components/TransactionDetailModel'),
     TransactionListModel: require('./components/TransactionListModel'),
     TrackingOrderModel: require('./components/TrackingOrderModel'),

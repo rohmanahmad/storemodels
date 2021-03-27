@@ -37,6 +37,13 @@ class AvailableShippingModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
+            trash_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false,
+                default: 0
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',
@@ -57,6 +64,10 @@ class AvailableShippingModel extends PostgresORM {
             primary: {
                 keys: {_id: -1},
                 uniq: true
+            },
+            trash_status: {
+                keys: {trash_status: -1},
+                uniq: false
             },
             ukm: { // untuk mencari data berdasarkan
                 keys: {ukm_id: 1},

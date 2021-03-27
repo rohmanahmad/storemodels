@@ -38,11 +38,24 @@ class CompaniesModel extends PostgresORM {
                 isNullable: true
             },
             // kurir id / hanya untuk kurir lokal aja. jika kurir luar, akan ditulis global
-            reputation: {
+            company_reputation: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
                 isNullable: true
+            },
+            company_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
+            trash_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false,
+                default: 0
             },
             created_at: {
                 type: Date,
@@ -64,6 +77,10 @@ class CompaniesModel extends PostgresORM {
             primary: {
                 keys: {_id: -1},
                 uniq: true
+            },
+            trash_status: {
+                keys: {trash_status: -1},
+                uniq: false
             },
             search_by_name: {
                 keys: {company_name: 1},

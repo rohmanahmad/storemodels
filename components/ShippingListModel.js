@@ -37,11 +37,18 @@ class ShippingListModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            is_active: {
-                type: Boolean,
-                stringType: 'bool',
+            shipping_status: {
+                type: Number,
+                stringType: 'int4',
                 size: 0,
                 isNullable: false
+            },
+            trash_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false,
+                default: 0
             },
             created_at: {
                 type: Date,
@@ -63,6 +70,10 @@ class ShippingListModel extends PostgresORM {
             primary: {
                 keys: {_id: -1},
                 uniq: true
+            },
+            trash_status: {
+                keys: {trash_status: -1},
+                uniq: false
             },
             search_autocomplete: { // search shipping
                 keys: {shipping_name: 1},

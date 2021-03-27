@@ -73,11 +73,24 @@ class BankTransactionModel extends PostgresORM {
                 size: 40,
                 isNullable: true
             },
+            trx_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
             approved_at: { // relasi ke user_account yg rolenya sebagai admin / operation
                 type: Date,
                 stringType: 'timestamp',
                 size: 0,
                 isNullable: true
+            },
+            trash_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false,
+                default: 0
             },
             created_at: {
                 type: Date,
@@ -99,6 +112,10 @@ class BankTransactionModel extends PostgresORM {
             primary: {
                 keys: {_id: -1},
                 uniq: true
+            },
+            trash_status: {
+                keys: {trash_status: -1},
+                uniq: false
             },
             date: { // untuk sorting kebanyakan DESC
                 keys: {created_at: -1}

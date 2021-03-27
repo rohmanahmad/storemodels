@@ -47,6 +47,13 @@ class RateSummaryModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             }, // (type float8)
+            trash_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false,
+                default: 0
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',
@@ -67,6 +74,10 @@ class RateSummaryModel extends PostgresORM {
             primary: {
                 keys: {_id: -1},
                 uniq: true
+            },
+            trash_status: {
+                keys: {trash_status: -1},
+                uniq: false
             },
             product: {
                 keys: {reference_id: 1},

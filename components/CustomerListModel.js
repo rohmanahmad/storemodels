@@ -93,12 +93,25 @@ class CustomerListModel extends PostgresORM {
                 size: 40,
                 isNullable: true
             }, // relasi ke address_list.id
+            customer_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
             is_indonesia: {
                 type: Boolean,
                 stringType: 'bool',
                 size: 0,
                 isNullable: true
             }, // ktp indonesia atau bukan
+            trash_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false,
+                default: 0
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',
@@ -119,6 +132,10 @@ class CustomerListModel extends PostgresORM {
             primary: {
                 keys: {_id: -1},
                 uniq: true
+            },
+            trash_status: {
+                keys: {trash_status: -1},
+                uniq: false
             },
             identity: { // untuk mencari data berdasarkan no ktp/sim/passport
                 keys: {identity_no: 1},

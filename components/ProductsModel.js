@@ -148,6 +148,13 @@ class ProductsModel extends PostgresORM {
                 size: 40,
                 isNullable: true
             },
+            trash_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false,
+                default: 0
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',
@@ -168,6 +175,10 @@ class ProductsModel extends PostgresORM {
             primary: {
                 keys: {_id: -1},
                 uniq: true
+            },
+            trash_status: {
+                keys: {trash_status: -1},
+                uniq: false
             },
             category: { // digunakan untuk pencarian by category
                 keys: {category_id: 1},

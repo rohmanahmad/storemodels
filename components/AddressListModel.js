@@ -72,6 +72,12 @@ class AddressListModel extends PostgresORM {
                 isNullable: false
                 // relation to locations table
             },
+            address_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
             recipest_name: {
                 type: String,
                 stringType: 'bpchar',
@@ -93,6 +99,13 @@ class AddressListModel extends PostgresORM {
                 isNullable: true
                 // relation to locations table
             },
+            trash_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false,
+                default: 0
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',
@@ -113,6 +126,10 @@ class AddressListModel extends PostgresORM {
             primary: {
                 keys: {_id: -1},
                 uniq: true
+            },
+            trash_status: {
+                keys: {trash_status: -1},
+                uniq: false
             },
             name: { // untuk mencari data autocomplete
                 keys: {address_name: 1},

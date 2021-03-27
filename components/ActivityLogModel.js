@@ -43,6 +43,13 @@ class ActivityLogModel extends PostgresORM {
                 size: 0,
                 isNullable: true
             },
+            trash_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false,
+                default: 0
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',
@@ -63,6 +70,10 @@ class ActivityLogModel extends PostgresORM {
             primary: {
                 keys: {_id: -1},
                 uniq: true
+            },
+            trash_status: {
+                keys: {trash_status: -1},
+                uniq: false
             },
             server: { // mencari dengan spesifik server dan jenis
                 keys: {server_ip: -1, type: -1},

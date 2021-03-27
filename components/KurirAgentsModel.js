@@ -63,7 +63,7 @@ class KurirAgentsModel extends PostgresORM {
                 isNullable: true
             },
             // reputation : 0 - 5
-            reputation: {
+            agent_reputation: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
@@ -75,11 +75,18 @@ class KurirAgentsModel extends PostgresORM {
             * - 2 : banned / not available in time period
             * - 3 : blocked / black list / not-available 
             */
-            status: {
+            agent_status: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
                 isNullable: false
+            },
+            trash_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false,
+                default: 0
             },
             created_at: {
                 type: Date,
@@ -101,6 +108,10 @@ class KurirAgentsModel extends PostgresORM {
             primary: {
                 keys: {_id: -1},
                 uniq: true
+            },
+            trash_status: {
+                keys: {trash_status: -1},
+                uniq: false
             },
             search_by_name: {
                 keys: {agent_firstname: 1},

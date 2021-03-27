@@ -87,6 +87,19 @@ class ImagesGalleryModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             }, // mulai dari 0: defautl 1 gambar ke2 dst
+            image_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
+            trash_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false,
+                default: 0
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',
@@ -108,9 +121,17 @@ class ImagesGalleryModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
+            trash_status: {
+                keys: {trash_status: -1},
+                uniq: false
+            },
             by_account: {
                 keys: {account_id: 1},
                 uniq: false
+            },
+            validate: {
+                keys: {account_id: 1, _id: 1},
+                uniq: true
             },
             by_uploader: {
                 keys: {uploader_id: 1},

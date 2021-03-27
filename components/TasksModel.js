@@ -2,9 +2,9 @@
 
 const PostgresORM = require('postgresql-orm')
 
-class UKMConfigurationModel extends PostgresORM {
+class TasksModel extends PostgresORM {
     get tableName () {
-        return 'ukm_configuration'
+        return 'tasks'
     }
 
     get connection () {
@@ -25,23 +25,29 @@ class UKMConfigurationModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            ukm_id: {
+            type: {
                 type: String,
                 stringType: 'bpchar',
-                size: 40,
+                size: 20,
                 isNullable: false
-            }, // relasi ke transactions.id
-            key: {
+            },
+            executor_name: {
                 type: String,
                 stringType: 'bpchar',
-                size: 0,
-                isNullable: false
-            }, // relase ke product_list.id
-            value: {
+                size: 30,
+                isNullable: true
+            },
+            executor_ip: {
                 type: String,
-                stringType: 'text',
+                stringType: 'bpchar',
+                size: 30,
+                isNullable: true
+            },
+            data: {
+                type: Object,
+                stringType: 'json',
                 size: 0,
-                isNullable: false
+                isNullable: true
             },
             trash_status: {
                 type: Number,
@@ -49,6 +55,18 @@ class UKMConfigurationModel extends PostgresORM {
                 size: 0,
                 isNullable: false,
                 default: 0
+            },
+            target_execution: {
+                type: Date,
+                stringType: 'timestamp',
+                size: 0,
+                isNullable: false
+            },
+            executed_at: {
+                type: Date,
+                stringType: 'timestamp',
+                size: 0,
+                isNullable: true
             },
             created_at: {
                 type: Date,
@@ -75,15 +93,18 @@ class UKMConfigurationModel extends PostgresORM {
                 keys: {trash_status: -1},
                 uniq: false
             },
-            date: { // untuk sorting
-                keys: {created_at: -1},
+            executor_ip: { // mencari dengan spesifik server ip
+                keys: {executor_ip: -1},
                 uniq: false
+            },
+            date: { // untuk sorting kebanyakan DESC
+                keys: {created_at: -1}
             }
         }
     }
 }
 
 module.exports = function (opt = {}) {
-    const model = new UKMConfigurationModel(opt)
+    const model = new TasksModel(opt)
     return model
 }

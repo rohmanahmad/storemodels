@@ -96,6 +96,12 @@ class UserActivityModel extends PostgresORM {
                 stringType: 'int4',
                 size: 0,
                 isNullable: true
+            },
+            created_at: {
+                type: Date,
+                stringType: 'timestamp',
+                size: 0,
+                isNullable: true
             }
         }
     }

@@ -55,6 +55,19 @@ class ReviewRepliesModel extends PostgresORM {
                 size: 0,
                 isNullable: true
             },
+            reply_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
+            trash_status: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false,
+                default: 0
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',
@@ -75,6 +88,10 @@ class ReviewRepliesModel extends PostgresORM {
             primary: {
                 keys: {_id: -1},
                 uniq: true
+            },
+            trash_status: {
+                keys: {trash_status: -1},
+                uniq: false
             },
             review_id: { // sort chat by date
                 keys: {review_id: -1},
