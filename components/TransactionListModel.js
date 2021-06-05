@@ -100,6 +100,18 @@ class TransactionListModel extends PostgresORM {
                 size: 0,
                 isNullable: true
             },
+            tgl_antar: {
+                type: String,
+                stringType: 'bpchar',
+                size: 10, // 2020-01-01
+                isNullable: true
+            },
+            jam_antar: {
+                type: String,
+                stringType: 'bpchar',
+                size: 5, // 20:00
+                isNullable: true
+            },
             tax_total: {
                 type: Number,
                 stringType: 'int4',

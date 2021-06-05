@@ -1,6 +1,6 @@
 {
   "name": "pobmodels",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "all of models on pob",
   "main": "index.js",
   "dependencies": {
