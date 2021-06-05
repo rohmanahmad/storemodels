@@ -1,5 +1,5 @@
 {
-  "name": "pobmodels",
+  "name": "storemodels",
   "version": "1.0.5",
   "description": "all of models on pob",
   "main": "index.js",
@@ -13,12 +13,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pasaronlinebatu/pobmodels.git"
+    "url": "git+https://github.com/rohmanahmad/storemodels.git"
   },
   "author": "pandawadevelopers",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pasaronlinebatu/pobmodels/issues"
+    "url": "https://github.com/rohmanahmad/storemodels/issues"
   },
-  "homepage": "https://github.com/pasaronlinebatu/pobmodels#readme"
+  "homepage": "https://github.com/rohmanahmad/storemodels#readme"
 }
