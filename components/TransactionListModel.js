@@ -148,6 +148,12 @@ class TransactionListModel extends PostgresORM {
                 size: 0,
                 isNullable: true
             },
+            payment_ref_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: true
+            },
             trash_status: {
                 type: Number,
                 stringType: 'int4',

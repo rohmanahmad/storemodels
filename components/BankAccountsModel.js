@@ -2,9 +2,9 @@
 
 const PostgresORM = require('postgresql-orm')
 
-class PaymentRefsModel extends PostgresORM {
+class BankAccounts extends PostgresORM {
     get tableName () {
-        return 'payment_reference'
+        return 'bank_accounts'
     }
 
     get connection () {
@@ -25,49 +25,36 @@ class PaymentRefsModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            uniq_number: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+            bank_code: {
+                type: String,
+                stringType: 'bpchar',
+                size: 5, // kode bank jika trf menggunakan atm ke bank lain
                 isNullable: false
             },
-            nominal: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+            bank_name: {
+                type: String,
+                stringType: 'bpchar',
+                size: 20, // nama bank: bca, mandiri, bri, dsb
                 isNullable: false
             },
-            payment_method: { // bank_transfer / credits
+            no_rec: {
                 type: String,
                 stringType: 'bpchar',
-                size: 20,
-                isNullable: false
-            },
-            e_wallet_transaction_id: { // relasi ke e_wallet_transaction
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
+                size: 40, // digit nomor rekening
                 isNullable: true
             },
-            /**
-             * - no rekening bank customer
-             * - relasi dengan bank_accounts tabel
-             */
-            bank_account_from: {
+            account_name: { // nama pemilik rekening / sesuaikan dengan nama asli rekening
                 type: String,
                 stringType: 'bpchar',
-                size: 40,
+                size: 50,
                 isNullable: true
             },
-            /**
-             * - no rekening bank perusahaan
-             * - relasi dengan config
-             */
-            bank_account_destination: {
+            branch_name: {
                 type: String,
                 stringType: 'bpchar',
-                size: 40,
-                isNullable: true
+                size: 50, // biasanya dipakai jika hanya diperlukan sj
+                isNullable: false,
+                default: ''
             },
             trash_status: {
                 type: Number,
@@ -101,16 +88,18 @@ class PaymentRefsModel extends PostgresORM {
                 keys: {trash_status: -1},
                 uniq: false
             },
+            no_rec: { // mencari dengan spesifik server dan jenis
+                keys: {no_rec: -1, trash_status: -1},
+                uniq: true
+            },
             date: { // untuk sorting kebanyakan DESC
                 keys: {created_at: -1}
             }
         }
     }
-
-    /* functions */
 }
 
 module.exports = function (opt = {}) {
-    const model = new PaymentRefsModel(opt)
+    const model = new BankAccounts(opt)
     return model
 }

@@ -7,6 +7,7 @@ module.exports = {
     AddressListModel: require('./components/AddressListModel'),
     AvailableShipping: require('./components/AvailableShippingModel'),
     BankTransactionModel: require('./components/BankTransactionModel'),
+    BankAccountsModel: require('./components/BankAccountsModel'),
     CategoriesModel: require('./components/CategoriesModel'),
     CompaniesModel: require('./components/CompaniesModel'),
     ConversationListModel: require('./components/ConversationListModel'),

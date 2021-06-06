@@ -1,6 +1,6 @@
 {
   "name": "storemodels",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "all of models on pob",
   "main": "index.js",
   "dependencies": {
