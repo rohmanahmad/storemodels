@@ -2,9 +2,9 @@
 
 const PostgresORM = require('postgresql-orm')
 
-class ReviewsModel extends PostgresORM {
+class RequestChangesModel extends PostgresORM {
     get tableName () {
-        return 'reviews'
+        return 'request_changes'
     }
 
     get connection () {
@@ -25,14 +25,19 @@ class ReviewsModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            /* available groups: product, ukm,  */
-            review_group: {
+            /* available types: phonenumber, email, dll */
+            request_type: {
                 type: String,
                 stringType: 'bpchar',
                 size: 20,
                 isNullable: false
             },
-            /* reerence to product_table or ukm or others */
+            /* 
+            available ref:
+                - user._id
+                - customer._id
+                - etc
+             */
             reference_id: {
                 type: String,
                 stringType: 'bpchar',
@@ -41,31 +46,46 @@ class ReviewsModel extends PostgresORM {
             }, // as foreign-key to product_list
             // untuk review tidak memerlukan ukm_id, krn secara default, ukm tidak bisa tulis review, hanya bisa reply aja.
             // untuk penanganan menggunakan product_id
-            customer_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: false
-            }, // as foreign-key to customer_list
-            review_text: {
+            old_data: {
                 type: String,
                 stringType: 'text',
                 size: 0,
-                isNullable: false
-            }, // dibatasi 255 karakter
-            gallery_id: {
+                isNullable: true
+            }, // as foreign-key to customer_list
+            new_data: {
                 type: String,
                 stringType: 'text',
                 size: 0,
                 isNullable: true
             },
-            review_status: {
-                type: Number,
-                stringType: 'int4',
+            // approval types: [automatic, confirmation, admin]
+            approval_type: {
+                type: String,
+                stringType: 'bpchar',
                 size: 0,
                 isNullable: false
             },
-            trash_status: {
+            // confirmation types: [sms, email, whatsapp]
+            confirmation_type: {
+                type: String,
+                stringType: 'bpchar',
+                size: 6,
+                isNullable: false
+            },
+            confirmation_code: {
+                type: String,
+                stringType: 'bpchar',
+                size: 6,
+                isNullable: false
+            },
+            /* 
+            approval_status: 
+            - 0 : rejected
+            - 1 : approved
+            - 2 : pending
+            - 3 : cancel
+             */
+            approval_status: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
@@ -93,15 +113,15 @@ class ReviewsModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
-            trash_status: {
-                keys: {trash_status: -1},
+            approval_status: {
+                keys: {approval_status: -1},
                 uniq: false
             },
-            product: { // mencari review by productid dan customerid serta ukmid
-                keys: {reference_id: -1, customer_id: 1},
+            type_and_ref: {
+                keys: {reference_id: 1, request_type: 1},
                 uniq: false
             },
-            date: { // untuk sorting kebanyakan DESC
+            date: {
                 keys: {created_at: -1}
             }
         }
@@ -109,6 +129,6 @@ class ReviewsModel extends PostgresORM {
 }
 
 module.exports = function (opt = {}) {
-    const model = new ReviewsModel(opt)
+    const model = new RequestChangesModel(opt)
     return model
 }

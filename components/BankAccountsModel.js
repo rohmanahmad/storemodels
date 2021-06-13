@@ -53,8 +53,7 @@ class BankAccounts extends PostgresORM {
                 type: String,
                 stringType: 'bpchar',
                 size: 50, // biasanya dipakai jika hanya diperlukan sj
-                isNullable: false,
-                default: ''
+                isNullable: true
             },
             trash_status: {
                 type: Number,

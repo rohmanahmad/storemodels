@@ -25,6 +25,13 @@ class TasksModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
+            /* 
+            avaiable types:
+                - email
+                - whatsapp
+                - telegram
+                - sms
+            */
             type: {
                 type: String,
                 stringType: 'bpchar',
@@ -37,18 +44,25 @@ class TasksModel extends PostgresORM {
                 size: 30,
                 isNullable: true
             },
+            // ip address dari eksekutor (tanda * untuk bebas pemilihan ip)
             executor_ip: {
                 type: String,
                 stringType: 'bpchar',
                 size: 30,
                 isNullable: true
             },
+            // stringify data object
             data: {
                 type: Object,
                 stringType: 'json',
                 size: 0,
                 isNullable: true
             },
+            /* 
+            avaiable statuses:
+                - 0 : active
+                - 1 : trash
+            */
             trash_status: {
                 type: Number,
                 stringType: 'int4',
@@ -56,12 +70,14 @@ class TasksModel extends PostgresORM {
                 isNullable: false,
                 default: 0
             },
+            // tanggal kapan seharusnya di eksekusi
             target_execution: {
                 type: Date,
                 stringType: 'timestamp',
                 size: 0,
                 isNullable: false
             },
+            // tgl selesai di eksekusi (di isi oleh eksekutor)
             executed_at: {
                 type: Date,
                 stringType: 'timestamp',

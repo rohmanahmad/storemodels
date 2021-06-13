@@ -2,16 +2,17 @@
 
 const PostgresORM = require('postgresql-orm')
 
-class ReviewsModel extends PostgresORM {
+class ContactsModel extends PostgresORM {
     get tableName () {
-        return 'reviews'
+        return 'contacts'
     }
 
     get connection () {
         return 'pg'
     }
-    
+
     get schemas () {
+        // user account bisa seorang pemilik ukm atau seorang customer (jadi satu)
         return {
             id: {
                 type: Number,
@@ -25,43 +26,38 @@ class ReviewsModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            /* available groups: product, ukm,  */
-            review_group: {
+            /* relation to user_accounts */
+            user_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: true
+            },
+            phone_number: {
                 type: String,
                 stringType: 'bpchar',
                 size: 20,
                 isNullable: false
             },
-            /* reerence to product_table or ukm or others */
-            reference_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: false
-            }, // as foreign-key to product_list
-            // untuk review tidak memerlukan ukm_id, krn secara default, ukm tidak bisa tulis review, hanya bisa reply aja.
-            // untuk penanganan menggunakan product_id
-            customer_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: false
-            }, // as foreign-key to customer_list
-            review_text: {
-                type: String,
-                stringType: 'text',
-                size: 0,
-                isNullable: false
-            }, // dibatasi 255 karakter
-            gallery_id: {
-                type: String,
-                stringType: 'text',
-                size: 0,
-                isNullable: true
-            },
-            review_status: {
+            /* verifikasi dilakukan ketika daftar, kontak akan mengirimkan otp ke nomor admin untuk verifikasi */
+            whatsapp_verified: {
                 type: Number,
                 stringType: 'int4',
+                size: 0,
+                default: 0,
+                isNullable: false
+            },
+            /* verifikasi dilakukan ketika daftar, kontak akan mengirimkan otp ke bot admin untuk verifikasi */
+            telegram_verified: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                default: 0,
+                isNullable: false
+            },
+            is_blocked: {
+                type: Boolean,
+                stringType: 'bool',
                 size: 0,
                 isNullable: false
             },
@@ -83,7 +79,7 @@ class ReviewsModel extends PostgresORM {
                 stringType: 'timestamp',
                 size: 0,
                 isNullable: true
-            },
+            }
         }
     }
 
@@ -97,18 +93,27 @@ class ReviewsModel extends PostgresORM {
                 keys: {trash_status: -1},
                 uniq: false
             },
-            product: { // mencari review by productid dan customerid serta ukmid
-                keys: {reference_id: -1, customer_id: 1},
+            user_id_phonenumber: { // digunakan untuk getInformation
+                keys: {user_id: 1, phone_number: 1},
+                uniq: true
+            },
+            phonenumber: { // digunakan untuk getInformation by phonenumber
+                keys: {phone_number: 1},
+                uniq: true
+            },
+            created_date: { // untuk sorting kebanyakan DESC
+                keys: {created_at: -1},
                 uniq: false
             },
-            date: { // untuk sorting kebanyakan DESC
-                keys: {created_at: -1}
+            updated_date: { // untuk sorting kebanyakan DESC
+                keys: {updated_at: -1},
+                uniq: false
             }
         }
     }
 }
 
 module.exports = function (opt = {}) {
-    const model = new ReviewsModel(opt)
+    const model = new ContactsModel(opt)
     return model
 }
