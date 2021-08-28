@@ -30,13 +30,19 @@ class UKMListModel extends PostgresORM {
                 stringType: 'bpchar',
                 size: 40,
                 isNullable: false
-            }, // relasi ke transactions.id
+            },
             ukm_name: {
                 type: String,
                 stringType: 'bpchar',
                 size: 30,
                 isNullable: false
-            }, // relase ke product_list.id
+            },
+            /* 
+            Store Name dengan UKM Name berbeda penempatan,
+            - UKM Name lebih mirip nama persahaan,
+            - Store Name Lebih mirip dengan nama kios.
+            - Bisa jadi 1 ukm mempunyai banyak nama toko (akan realisasi di kedepannya)
+            */
             store_name: {
                 type: String,
                 stringType: 'bpchar',
@@ -49,12 +55,22 @@ class UKMListModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
+            /* 
+            Hasil Referensi dari model RateSummaryModel
+            */
             stars_rate: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
                 isNullable: false
             },
+            /* 
+            available statuses:
+             - 0 : inactive / pernament_blocked
+             - 1 : active
+             - 2 : pending approval
+             - 3 : temp_blocked
+            */
             ukm_status: {
                 type: Number,
                 stringType: 'int4',
