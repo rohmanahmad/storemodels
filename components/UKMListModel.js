@@ -60,7 +60,7 @@ class UKMListModel extends PostgresORM {
             */
             stars_rate: {
                 type: Number,
-                stringType: 'int4',
+                stringType: 'float4',
                 size: 0,
                 isNullable: false
             },

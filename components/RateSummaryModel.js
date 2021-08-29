@@ -43,7 +43,7 @@ class RateSummaryModel extends PostgresORM {
             },
             stars_level: {
                 type: Number,
-                stringType: 'int4',
+                stringType: 'float4',
                 size: 0,
                 isNullable: false
             }, // (type float8)

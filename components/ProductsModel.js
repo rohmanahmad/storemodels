@@ -114,7 +114,7 @@ class ProductsModel extends PostgresORM {
             },
             product_stars_rate: {
                 type: Number,
-                stringType: 'int4',
+                stringType: 'float4',
                 size: 0,
                 isNullable: true
             },
