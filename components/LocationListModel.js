@@ -2,9 +2,9 @@
 
 const PostgresORM = require('postgresql-orm')
 
-class OTPCodeModel extends PostgresORM {
+class LocationModel extends PostgresORM {
     get tableName () {
-        return 'otp_code'
+        return 'location_list'
     }
 
     get connection () {
@@ -12,6 +12,7 @@ class OTPCodeModel extends PostgresORM {
     }
 
     get schemas () {
+        /* level 1 adalah kelurahan */
         return {
             id: {
                 type: Number,
@@ -25,43 +26,47 @@ class OTPCodeModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            account_id: {
+            location_name: {
+                type: String,
+                stringType: 'bpchar',
+                size: 100,
+                isNullable: false
+            },
+            propinsi_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: false
+                isNullable: true
             },
-            otp_code: {
+            kab_kota_id: {
                 type: String,
-                stringType: 'bpchar(6)',
-                size: 0,
-                isNullable: false
-            }, // yaitu parentid masih dari tabel yg sama
-            otp_type: {
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: true
+            },
+            kecamatan_id: { // untuk location tidak perlu pakai md5
                 type: String,
-                stringType: 'bpchar', // email, sms, whatsapp,
-                size: 10,
-                isNullable: false
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: true
             },
-            is_pending: {
-                type: Boolean,
-                stringType: 'bool',
+            postal_code: {
+                type: Number,
+                stringType: 'int4',
                 size: 0,
-                isNullable: false,
-                dafault: false
+                isNullable: true
             },
-            is_success: {
-                type: Boolean,
-                stringType: 'bool',
-                size: 0,
-                isNullable: false,
-                dafault: false
+            latitude: {
+                type: String,
+                stringType: 'bpchar',
+                size: 20,
+                isNullable: true
             },
-            valid_until: {
-                type: Date,
-                stringType: 'timestamp',
-                size: 0,
-                isNullable: false
+            longitude: {
+                type: String,
+                stringType: 'bpchar',
+                size: 20,
+                isNullable: true
             },
             is_trash: {
                 type: Boolean,
@@ -69,6 +74,20 @@ class OTPCodeModel extends PostgresORM {
                 size: 0,
                 isNullable: false,
                 default: false
+            },
+            is_pending_approval: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: false
+            },
+            is_active: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: true
             },
             created_at: {
                 type: Date,
@@ -88,29 +107,30 @@ class OTPCodeModel extends PostgresORM {
     get index () {
         return {
             primary: {
-                keys: {_id: -1},
+                keys: { id: -1 },
                 uniq: true
             },
-            is_trash: {
-                keys: {is_trash: -1},
+            kecamatan_id: { // untuk sorting kebanyakan DESC
+                keys: { kecamatan_id: 1 },
                 uniq: false
             },
-            otp_search: { // untuk sorting kebanyakan DESC
-                keys: {otp_code: 1, otp_type: 1, valid_until: -1},
+            kab_kota_id: { // untuk sorting kebanyakan DESC
+                keys: { kab_kota_id: 1 },
                 uniq: false
             },
-            account_id: { // untuk sorting kebanyakan DESC
-                keys: {account_id: 1},
+            propinsi_id: { // untuk sorting kebanyakan DESC
+                keys: { propinsi_id: 1 },
                 uniq: false
             },
-            date: { // untuk sorting kebanyakan DESC
-                keys: {created_at: -1}
+            location_name: { // untuk sorting kebanyakan DESC
+                keys: { location_name: 1 },
+                uniq: false
             }
         }
     }
 }
 
 module.exports = function (opt = {}) {
-    const model = new OTPCodeModel(opt)
+    const model = new LocationModel(opt)
     return model
 }

@@ -25,7 +25,7 @@ class ProductsModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            ukm_id: {
+            store_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
@@ -40,7 +40,7 @@ class ProductsModel extends PostgresORM {
             selebihnya bebas kreasi, untuk issue marketing, krn setiap marketing punya cara sendiri untuk memasarkan product tsb
             * harga akan selalu ngikuti sesuai dengan margin dan kesepakatan, apakah menggunakan persentase atau komisi
             */
-            product_reference_id: {
+            product_parent_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
@@ -52,108 +52,87 @@ class ProductsModel extends PostgresORM {
                 size: 40,
                 isNullable: true
             },
-            location_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: false
-            },
             category_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
                 isNullable: false
-            }, // foreign-key dari category_list
-            product_name: {
+            },
+            name: {
                 type: String,
                 stringType: 'bpchar',
                 size: 30,
                 isNullable: false
             },
-            product_description: {
+            description: {
                 type: String,
                 stringType: 'text',
                 size: 0,
                 isNullable: false
             },
-            product_price: {
+            price: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
                 isNullable: false
             },
-            /**
-             * status: Number
-             * - 0 : inactive
-             * - 1 : active
-             * - 2 : pending_review
-             */
-            product_status: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: false
-            },
-            product_discount: {
+            discount: {
                 type: Number,
                 stringType: 'float4',
                 size: 0,
                 isNullable: false
             },
-            product_stock: {
+            stock: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
                 isNullable: false
             },
-            product_views_total: {
+            views_total: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
                 isNullable: true
             },
-            product_stars_rate: {
+            stars_rate: {
                 type: Number,
                 stringType: 'float4',
                 size: 0,
                 isNullable: true
             },
-            product_tax: {
+            tax: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
                 isNullable: true
             },
-            image_1_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: true
-            },
-            image_2_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: true
-            },
-            image_3_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: true
-            },
-            image_4_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: true
-            },
-            trash_status: {
-                type: Number,
-                stringType: 'int4',
+            is_active: {
+                type: Boolean,
+                stringType: 'bool',
                 size: 0,
                 isNullable: false,
-                default: 0
+                default: false
+            },
+            is_pending_review: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: true
+            },
+            is_blocked: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: false
+            },
+            is_trash: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: false
             },
             created_at: {
                 type: Date,
@@ -176,10 +155,6 @@ class ProductsModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
-            trash_status: {
-                keys: {trash_status: -1},
-                uniq: false
-            },
             category: { // digunakan untuk pencarian by category
                 keys: {category_id: 1},
                 uniq: false
@@ -188,8 +163,20 @@ class ProductsModel extends PostgresORM {
                 keys: {location_id: 1},
                 uniq: false
             },
-            productname: { // digunakan untuk pencarian by keyword
-                keys: {product_name: 1},
+            product_name: { // digunakan untuk pencarian by keyword
+                keys: {name: 1},
+                uniq: false
+            },
+            is_trash: {
+                keys: {is_trash: -1},
+                uniq: false
+            },
+            is_pending_review: { // digunakan untuk pencarian by pending review
+                keys: {is_pending_review: 1},
+                uniq: false
+            },
+            is_blocked: { // digunakan untuk pencarian by blocked status
+                keys: {is_blocked: 1},
                 uniq: false
             },
             date: { // untuk sorting kebanyakan DESC

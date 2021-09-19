@@ -2,9 +2,9 @@
 
 const PostgresORM = require('postgresql-orm')
 
-class LocationModel extends PostgresORM {
+class UKMListModel extends PostgresORM {
     get tableName () {
-        return 'location_list'
+        return 'store_list'
     }
 
     get connection () {
@@ -12,7 +12,6 @@ class LocationModel extends PostgresORM {
     }
 
     get schemas () {
-        /* level 1 adalah kelurahan */
         return {
             id: {
                 type: Number,
@@ -26,54 +25,57 @@ class LocationModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            location_name: {
+            ukm_id: {
                 type: String,
                 stringType: 'bpchar',
-                size: 100,
+                size: 40,
                 isNullable: false
             },
-            kecamatan_id: { // untuk location tidak perlu pakai md5
+            name: {
+                type: String,
+                stringType: 'bpchar',
+                size: 30,
+                isNullable: false
+            },
+            address_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
                 isNullable: true
             },
-            kab_kota_id: {
+            description: {
                 type: String,
                 stringType: 'bpchar',
-                size: 40,
+                size: 200,
                 isNullable: true
             },
-            propinsi_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: true
-            },
-            postal_code: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: true
-            },
-            latitude: {
-                type: String,
-                stringType: 'bpchar',
-                size: 20,
-                isNullable: true
-            },
-            longitude: {
-                type: String,
-                stringType: 'bpchar',
-                size: 20,
-                isNullable: true
-            },
-            trash_status: {
-                type: Number,
-                stringType: 'int4',
+            is_active: {
+                type: Boolean,
+                stringType: 'bool',
                 size: 0,
                 isNullable: false,
-                default: 0
+                default: true
+            },
+            is_temp_blocked: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: false
+            },
+            is_blocked: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: false
+            },
+            is_trash: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: false
             },
             created_at: {
                 type: Date,
@@ -93,23 +95,31 @@ class LocationModel extends PostgresORM {
     get index () {
         return {
             primary: {
-                keys: { id: -1 },
+                keys: {_id: -1},
                 uniq: true
             },
-            kecamatan_id: { // untuk sorting kebanyakan DESC
-                keys: { kecamatan_id: 1 },
+            is_trash: {
+                keys: {is_trash: 1},
                 uniq: false
             },
-            kab_kota_id: { // untuk sorting kebanyakan DESC
-                keys: { kab_kota_id: 1 },
+            is_active: {
+                keys: {is_active: 1},
                 uniq: false
             },
-            propinsi_id: { // untuk sorting kebanyakan DESC
-                keys: { propinsi_id: 1 },
+            is_temp_blocked: {
+                keys: {is_temp_blocked: 1},
                 uniq: false
             },
-            location_name: { // untuk sorting kebanyakan DESC
-                keys: { location_name: 1 },
+            is_blocked: {
+                keys: {is_blocked: 1},
+                uniq: false
+            },
+            name: { // untuk searching
+                keys: {name: -1},
+                uniq: false
+            },
+            date: { // untuk sorting
+                keys: {created_at: -1},
                 uniq: false
             }
         }
@@ -117,6 +127,6 @@ class LocationModel extends PostgresORM {
 }
 
 module.exports = function (opt = {}) {
-    const model = new LocationModel(opt)
+    const model = new UKMListModel(opt)
     return model
 }

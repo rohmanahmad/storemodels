@@ -25,32 +25,43 @@ class CustomerListModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            customer_title: {
+            account_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
+            // title (tuan, nyonya, agan, sista)
+            title: {
                 type: String,
                 stringType: 'bpchar',
                 size: 10,
                 isNullable: true
-            }, // tuan, nyonya, agan, sista
-            customer_firstname: {
+            },
+            first_name: {
                 type: String,
                 stringType: 'bpchar',
                 size: 30,
                 isNullable: true
             },
-            customer_lastname: {
+            last_name: {
                 type: String,
                 stringType: 'bpchar',
                 size: 30,
                 isNullable: true
             },
-            is_verified: {
-                type: Boolean,
-                stringType: 'bool',
-                size: 0,
-                isNullable: false
+            // nick_name (nama panggilan)
+            nick_name: {
+                type: String,
+                stringType: 'bpchar',
+                size: 30,
+                isNullable: true
             },
-            // verifikasi dilakukan untuk menentukan apakah real atau enggak
-            // foto bersama ktp untuk prosess verifikasi
+            /*
+             * verification_photo_id:
+             * verifikasi dilakukan untuk menentukan apakah real atau enggak
+             * foto bersama ktp untuk prosess verifikasi
+             */
             verification_photo_id: {
                 type: String,
                 stringType: 'bpchar',
@@ -63,51 +74,69 @@ class CustomerListModel extends PostgresORM {
                 size: 40,
                 isNullable: true
             },
-            identity_no: {
+            // identity_type (ktp/passport/sim/dll)
+            identity_type: {
+                type: String,
+                stringType: 'bpchar',
+                size: 20,
+                isNullable: true
+            },
+            // identity_number (nomor identitas)
+            identity_number: {
                 type: String,
                 stringType: 'bpchar',
                 size: 30,
                 isNullable: true
-            }, // nomor ktp
+            },
+            // birth_date (tanggal tanpa jam)
             birth_date: {
                 type: Date,
                 stringType: 'date',
                 size: 0,
                 isNullable: true
-            }, // tanggal tanpa jam
+            },
+            // birth_place (kota tempat lahir)
             birth_place: {
                 type: String,
                 stringType: 'bpchar',
                 size: 30,
                 isNullable: true
-            }, // kota tempat lahir
-            main_address_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: true
-            }, // relasi ke address_list.id
-            secondary_address_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: true
-            }, // relasi ke address_list.id
-            customer_status: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: false
             },
+            // is_indonesia (ktp indonesia atau bukan)
             is_indonesia: {
                 type: Boolean,
                 stringType: 'bool',
                 size: 0,
                 isNullable: true
-            }, // ktp indonesia atau bukan
-            trash_status: {
-                type: Number,
-                stringType: 'int4',
+            },
+            // is_verified (verifikasi menggunakan ktp dan foto bersama ktp)
+            is_verified: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false
+            },
+            is_active: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false
+            },
+            is_temp_blocked: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false
+            },
+            is_blocked: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false
+            },
+            is_trash: {
+                type: Boolean,
+                stringType: 'bool',
                 size: 0,
                 isNullable: false,
                 default: 0
@@ -133,13 +162,21 @@ class CustomerListModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
-            trash_status: {
-                keys: {trash_status: -1},
+            is_trash: {
+                keys: {is_trash: -1},
                 uniq: false
             },
-            identity: { // untuk mencari data berdasarkan no ktp/sim/passport
-                keys: {identity_no: 1},
-                uniq: true
+            is_active: {
+                keys: {is_active: -1},
+                uniq: false
+            },
+            is_blocked: {
+                keys: {is_blocked: -1},
+                uniq: false
+            },
+            is_temp_blocked: {
+                keys: {is_temp_blocked: -1},
+                uniq: false
             },
             is_verified: { // untuk mencari data yg terverifikasi dan blm
                 keys: {is_verified: -1},

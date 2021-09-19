@@ -25,7 +25,7 @@ class UserTokensModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            user_id: {
+            account_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
@@ -43,18 +43,18 @@ class UserTokensModel extends PostgresORM {
                 size: 0,
                 isNullable: true
             }, // text hash
-            expired: {
+            expired_in: {
                 type: Date,
                 stringType: 'timestamp',
                 size: 0,
                 isNullable: false
             }, // expired date in time 
-            trash_status: {
-                type: Number,
-                stringType: 'int4',
+            is_trash: {
+                type: Boolean,
+                stringType: 'bool',
                 size: 0,
                 isNullable: false,
-                default: 0
+                default: false
             },
             created_at: {
                 type: Date,

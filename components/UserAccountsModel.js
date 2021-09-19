@@ -27,23 +27,35 @@ class UserAccountsModel extends PostgresORM {
                 isNullable: false
             },
             /* email dan password tidak wajib, krn harus menggunakan nomor telp sebagai OTP */
-            user_email: {
+            email: {
                 type: String,
                 stringType: 'bpchar',
                 size: 50,
                 isNullable: true
             },
-            user_password: {
+            password: {
                 type: String,
                 stringType: 'text',
                 size: 0,
                 isNullable: true
             },
             /* phonenumber wajib */
-            user_phonenumber: {
+            phonenumber: {
                 type: String,
                 stringType: 'bpchar',
                 size: 20,
+                isNullable: false
+            },
+            role: {
+                type: String,
+                stringType: 'bpchar',
+                size: 10,
+                isNullable: false
+            },
+            is_pending_confirmation: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
                 isNullable: false
             },
             is_active: {
@@ -58,32 +70,12 @@ class UserAccountsModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
-            ukm_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: true
-            },
-            /* setiap kali pendaftaran user baru, maka otomatis terdaftar sebagai customer sebagai default */
-            /* jika user tsb juga sebagai mitra, maka ukm id ada isinya */
-            customer_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: true
-            },
-            user_role: {
-                type: String,
-                stringType: 'bpchar',
-                size: 10,
-                isNullable: false
-            },
-            trash_status: {
-                type: Number,
-                stringType: 'int4',
+            is_trash: {
+                type: Boolean,
+                stringType: 'bool',
                 size: 0,
                 isNullable: false,
-                default: 0
+                default: false
             },
             created_at: {
                 type: Date,
@@ -118,9 +110,21 @@ class UserAccountsModel extends PostgresORM {
                 keys: {user_phonenumber: 1},
                 uniq: true
             },
-            ukm_id: { // digunakan untuk pencarian by ukmid
-                keys: {ukm_id: 1},
-                uniq: true
+            pendings: { // digunakan untuk pencarian by pending status
+                keys: {is_pending_confirmation: 1},
+                uniq: false
+            },
+            active: { // digunakan untuk pencarian by active status
+                keys: {is_active: 1},
+                uniq: false
+            },
+            blocked: { // digunakan untuk pencarian by blocked status
+                keys: {is_blocked: 1},
+                uniq: false
+            },
+            trash: { // digunakan untuk pencarian by trash status
+                keys: {is_trash: 1},
+                uniq: false
             },
             created_date: { // untuk sorting kebanyakan DESC
                 keys: {created_at: -1},

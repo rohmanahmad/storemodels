@@ -2,9 +2,13 @@
 
 const PostgresORM = require('postgresql-orm')
 
-class ReviewRepliesModel extends PostgresORM {
+/*
+    tabel ini tidak diubah secara langsung oleh pemilik maupun admin.
+    ini otomatis diubah berdasarkan data dari review dan dihitung menggunakan formula
+*/
+class RateSummaryModel extends PostgresORM {
     get tableName () {
-        return 'review_replies'
+        return 'product_reviews_summary'
     }
 
     get connection () {
@@ -25,48 +29,31 @@ class ReviewRepliesModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            review_id: {
+            product_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: false
-            }, // relasi ke product_review.id
-            customer_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: false
-            }, // relasi ke customer.id
-            ukm_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: false
-            }, // relasi ke ukm.id
-            reply_text: {
-                type: String,
-                stringType: 'text',
-                size: 0,
                 isNullable: false
             },
-            reply_images_url: {
-                type: String,
-                stringType: 'text',
-                size: 0,
-                isNullable: true
-            },
-            reply_status: {
+            stars_level: {
                 type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: false
-            },
-            trash_status: {
-                type: Number,
-                stringType: 'int4',
+                stringType: 'float4',
                 size: 0,
                 isNullable: false,
                 default: 0
+            },
+            responden_total: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false
+            },
+            is_trash: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: false
             },
             created_at: {
                 type: Date,
@@ -89,23 +76,25 @@ class ReviewRepliesModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
-            trash_status: {
-                keys: {trash_status: -1},
+            is_trash: {
+                keys: {is_trash: -1},
                 uniq: false
             },
-            review_id: { // sort chat by date
-                keys: {review_id: -1},
+            product: {
+                keys: {product_id: 1},
                 uniq: false
             },
-            date: { // untuk sorting
+            date: { // untuk sorting kebanyakan DESC
                 keys: {created_at: -1},
                 uniq: false
             }
         }
     }
+
+    /* functions */
 }
 
 module.exports = function (opt = {}) {
-    const model = new ReviewRepliesModel(opt)
+    const model = new RateSummaryModel(opt)
     return model
 }

@@ -4,7 +4,7 @@ const PostgresORM = require('postgresql-orm')
 
 class CategoriesModel extends PostgresORM {
     get tableName () {
-        return 'category_list'
+        return 'product_category_list'
     }
 
     get connection () {
@@ -25,48 +25,44 @@ class CategoriesModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            category_type: {
-                type: String,
-                stringType: 'bpchar',
-                size: 30,
-                isNullable: false
-            },
-            parent_id: { // untuk ini biarkan memakai Id (number) krn jarang di lakukan oleh user secara langsung
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: true
-            }, // yaitu parentid masih dari tabel yg sama
-            category_gallery_id: {
+            // yaitu parentid masih dari tabel yg sama
+            parent_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
                 isNullable: true
             },
-            category_name: {
+            gallery_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: true
+            },
+            name: {
                 type: String,
                 stringType: 'bpchar',
                 size: 30,
                 isNullable: false
             },
-            category_description: {
+            description: {
                 type: String,
                 stringType: 'text',
                 size: 0,
                 isNullable: true
             },
-            category_status: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: false
-            },
-            trash_status: {
-                type: Number,
-                stringType: 'int4',
+            is_active: {
+                type: Boolean,
+                stringType: 'bool',
                 size: 0,
                 isNullable: false,
-                default: 0
+                default: true
+            },
+            is_trash: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: true
             },
             created_at: {
                 type: Date,
@@ -89,8 +85,8 @@ class CategoriesModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
-            trash_status: {
-                keys: {trash_status: -1},
+            is_trash: {
+                keys: {is_trash: -1},
                 uniq: false
             },
             date: { // untuk sorting kebanyakan DESC

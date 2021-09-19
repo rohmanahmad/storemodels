@@ -31,19 +31,7 @@ class UKMListModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            ukm_name: {
-                type: String,
-                stringType: 'bpchar',
-                size: 30,
-                isNullable: false
-            },
-            /* 
-            Store Name dengan UKM Name berbeda penempatan,
-            - UKM Name lebih mirip nama persahaan,
-            - Store Name Lebih mirip dengan nama kios.
-            - Bisa jadi 1 ukm mempunyai banyak nama toko (akan realisasi di kedepannya)
-            */
-            store_name: {
+            name: {
                 type: String,
                 stringType: 'bpchar',
                 size: 30,
@@ -53,36 +41,48 @@ class UKMListModel extends PostgresORM {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: false
+                isNullable: true
             },
-            /* 
-            Hasil Referensi dari model RateSummaryModel
-            */
-            stars_rate: {
-                type: Number,
-                stringType: 'float4',
-                size: 0,
-                isNullable: false
+            description: {
+                type: String,
+                stringType: 'bpchar',
+                size: 200,
+                isNullable: true
             },
-            /* 
-            available statuses:
-             - 0 : inactive / pernament_blocked
-             - 1 : active
-             - 2 : pending approval
-             - 3 : temp_blocked
-            */
-            ukm_status: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: false
-            },
-            trash_status: {
-                type: Number,
-                stringType: 'int4',
+            is_active: {
+                type: Boolean,
+                stringType: 'bool',
                 size: 0,
                 isNullable: false,
-                default: 0
+                default: true
+            },
+            is_pending_approval: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: false
+            },
+            is_temp_blocked: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: false
+            },
+            is_blocked: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: false
+            },
+            is_trash: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: false
             },
             created_at: {
                 type: Date,
@@ -105,12 +105,28 @@ class UKMListModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
-            trash_status: {
-                keys: {trash_status: -1},
+            is_trash: {
+                keys: {is_trash: 1},
+                uniq: false
+            },
+            is_active: {
+                keys: {is_active: 1},
+                uniq: false
+            },
+            is_pending_approval: {
+                keys: {is_pending_approval: 1},
+                uniq: false
+            },
+            is_temp_blocked: {
+                keys: {is_temp_blocked: 1},
+                uniq: false
+            },
+            is_blocked: {
+                keys: {is_blocked: 1},
                 uniq: false
             },
             name: { // untuk searching
-                keys: {ukm_name: -1},
+                keys: {name: -1},
                 uniq: false
             },
             date: { // untuk sorting

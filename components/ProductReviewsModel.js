@@ -4,7 +4,7 @@ const PostgresORM = require('postgresql-orm')
 
 class ReviewsModel extends PostgresORM {
     get tableName () {
-        return 'reviews'
+        return 'product_reviews'
     }
 
     get connection () {
@@ -25,52 +25,56 @@ class ReviewsModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            /* available groups: product, ukm,  */
-            review_group: {
+            product_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 20,
                 isNullable: false
             },
-            /* reerence to product_table or ukm or others */
-            reference_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: false
-            }, // as foreign-key to product_list
-            // untuk review tidak memerlukan ukm_id, krn secara default, ukm tidak bisa tulis review, hanya bisa reply aja.
-            // untuk penanganan menggunakan product_id
             customer_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
                 isNullable: false
-            }, // as foreign-key to customer_list
-            review_text: {
+            },
+            text: {
                 type: String,
                 stringType: 'text',
                 size: 0,
                 isNullable: false
-            }, // dibatasi 255 karakter
-            gallery_id: {
+            },
+            gallery_id_1: {
                 type: String,
-                stringType: 'text',
-                size: 0,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: true
             },
-            review_status: {
+            stars_level: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
                 isNullable: false
             },
-            trash_status: {
-                type: Number,
-                stringType: 'int4',
+            is_published: {
+                type: Boolean,
+                stringType: 'bool',
                 size: 0,
                 isNullable: false,
-                default: 0
+                default: false
+            },
+            is_pending: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: false
+            },
+            is_trash: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: false
             },
             created_at: {
                 type: Date,
@@ -93,12 +97,20 @@ class ReviewsModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
-            trash_status: {
-                keys: {trash_status: -1},
+            is_trash: {
+                keys: {is_trash: 1},
                 uniq: false
             },
-            product: { // mencari review by productid dan customerid serta ukmid
-                keys: {reference_id: -1, customer_id: 1},
+            is_pending: {
+                keys: {is_pending: 1},
+                uniq: false
+            },
+            is_published: {
+                keys: {is_published: 1},
+                uniq: false
+            },
+            product: {
+                keys: {product_id: -1},
                 uniq: false
             },
             date: { // untuk sorting kebanyakan DESC

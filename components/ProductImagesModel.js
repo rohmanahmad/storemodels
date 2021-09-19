@@ -4,7 +4,7 @@ const PostgresORM = require('postgresql-orm')
 
 class ImagesGalleryModel extends PostgresORM {
     get tableName () {
-        return 'images_gallery'
+        return 'product_images'
     }
 
     get connection () {
@@ -25,12 +25,19 @@ class ImagesGalleryModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
+            product_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
             account_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
                 isNullable: false
             },
+            // uploader_id bisa sama dengan account_id bisa id admin
             uploader_id: {
                 type: String,
                 stringType: 'bpchar',
@@ -42,32 +49,6 @@ class ImagesGalleryModel extends PostgresORM {
                 stringType: 'bool',
                 size: 0,
                 isNullable: false
-            },
-            /* 
-            available type:
-                - product
-                - profile-avatar
-                - profile-wallpaper
-                - store-avatar
-                - category
-                - verification-photo
-            */
-            image_type: {
-                type: String,
-                stringType: 'bpchar',
-                size: 10,
-                isNullable: false
-            },
-            /* 
-            image_group: 
-                - thumbnail
-                - original
-            */
-            image_group: {
-                type: String,
-                stringType: 'bpchar',
-                size: 20,
-                isNullable: true
             },
             image_name: {
                 type: String,
@@ -86,19 +67,13 @@ class ImagesGalleryModel extends PostgresORM {
                 stringType: 'int4',
                 size: 0,
                 isNullable: false
-            }, // mulai dari 0: defautl 1 gambar ke2 dst
-            image_status: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: false
             },
-            trash_status: {
-                type: Number,
-                stringType: 'int4',
+            is_trash: {
+                type: Boolean,
+                stringType: 'bool',
                 size: 0,
                 isNullable: false,
-                default: 0
+                default: false
             },
             created_at: {
                 type: Date,
@@ -121,24 +96,41 @@ class ImagesGalleryModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
-            trash_status: {
-                keys: {trash_status: -1},
+            is_trash: {
+                keys: {is_trash: 1},
                 uniq: false
             },
-            by_account: {
+            account_id: {
                 keys: {account_id: 1},
                 uniq: false
             },
-            validate: {
-                keys: {account_id: 1, _id: 1},
-                uniq: true
+            uploader_id: {
+                keys: {uploader_id: 1},
+                uniq: false
             },
             by_uploader: {
                 keys: {uploader_id: 1},
                 uniq: false
             },
-            by_type: {
-                keys: {image_type: 1},
+            by_index: {
+                keys: {image_index: 1},
+                uniq: false
+            },
+            // use for product_detail query
+            product_list: {
+                keys: {
+                    product_id: 1,
+                    image_status: -1,
+                    index: 1
+                },
+                uniq: false
+            },
+            // use for product_detail query
+            product_detail: {
+                keys: {
+                    product_id: 1,
+                    image_status: -1
+                },
                 uniq: false
             },
             date: { // untuk sorting kebanyakan DESC

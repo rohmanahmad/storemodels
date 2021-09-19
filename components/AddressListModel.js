@@ -25,11 +25,18 @@ class AddressListModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            user_id: {
+            account_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
                 isNullable: true
+            },
+            name: {
+                type: String,
+                stringType: 'bpchar',
+                size: 30,
+                isNullable: false
+                // example: Home / Office / Apartement / Etc
             },
             is_default: {
                 type: Boolean,
@@ -37,28 +44,21 @@ class AddressListModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
-            address_name: {
-                type: String,
-                stringType: 'bpchar',
-                size: 30,
-                isNullable: false
-                // example: Home / Office / Apartement / Etc
-            },
-            address_street_name: {
+            street_name: {
                 type: String,
                 stringType: 'text',
                 size: 0,
                 isNullable: false
                 // example: Jalan Simpang Sumatra
             },
-            address_home_block: {
+            home_block: {
                 type: String,
                 stringType: 'bpchar',
                 size: 5,
                 isNullable: true
                 // example: VIC / 6c
             },
-            address_home_number: {
+            home_number: {
                 type: Number,
                 stringType: 'int4',
                 size: 2,
@@ -72,11 +72,19 @@ class AddressListModel extends PostgresORM {
                 isNullable: false
                 // relation to locations table
             },
-            address_status: {
-                type: Number,
-                stringType: 'int4',
+            is_active: {
+                type: Boolean,
+                stringType: 'bool',
                 size: 0,
-                isNullable: false
+                isNullable: false,
+                default: true
+            },
+            is_trash: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: false
             },
             recipest_name: {
                 type: String,
@@ -98,13 +106,6 @@ class AddressListModel extends PostgresORM {
                 size: 100,
                 isNullable: true
                 // relation to locations table
-            },
-            trash_status: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: false,
-                default: 0
             },
             created_at: {
                 type: Date,
@@ -132,11 +133,19 @@ class AddressListModel extends PostgresORM {
                 uniq: false
             },
             name: { // untuk mencari data autocomplete
-                keys: {address_name: 1},
+                keys: {name: 1},
                 uniq: false
             },
-            name: { // untuk mencari data autocomplete
-                keys: {recipest_name: 1},
+            trash: { // untuk mencari data autocomplete
+                keys: {is_trash: 1},
+                uniq: false
+            },
+            active: { // untuk mencari data autocomplete
+                keys: {is_active: 1},
+                uniq: false
+            },
+            location_id: { // untuk mencari data autocomplete
+                keys: {location_id: 1},
                 uniq: false
             },
             date: { // untuk sorting
