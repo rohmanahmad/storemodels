@@ -1,8 +1,10 @@
 'use strict'
 
+// source: https://dbdiagram.io/d/61471a3f825b5b014608f160
+
 const PostgresORM = require('postgresql-orm')
 
-class ImagesGalleryModel extends PostgresORM {
+class ProductImagesModel extends PostgresORM {
     get tableName () {
         return 'product_images'
     }
@@ -44,31 +46,32 @@ class ImagesGalleryModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            is_public: {
-                type: Boolean,
-                stringType: 'bool',
-                size: 0,
-                isNullable: false
-            },
-            image_name: {
+            title: {
                 type: String,
                 stringType: 'bpchar',
                 size: 30,
                 isNullable: false
             }, // akan di tempatkan pada alt di tag <img>
-            image_url: {
+            url: {
                 type: String,
                 stringType: 'text',
                 size: 0,
                 isNullable: false
             }, // dipisahkan koma. dibatasi max 4 image
-            image_index: {
+            index: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
                 isNullable: false
             },
             is_trash: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: false
+            },
+            is_pending: {
                 type: Boolean,
                 stringType: 'bool',
                 size: 0,
@@ -144,6 +147,6 @@ class ImagesGalleryModel extends PostgresORM {
 }
 
 module.exports = function (opt = {}) {
-    const model = new ImagesGalleryModel(opt)
+    const model = new ProductImagesModel(opt)
     return model
 }

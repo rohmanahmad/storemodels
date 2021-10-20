@@ -1,5 +1,7 @@
 'use strict'
 
+// source: https://dbdiagram.io/d/61471a3f825b5b014608f160
+
 const PostgresORM = require('postgresql-orm')
 
 class ReviewsModel extends PostgresORM {
@@ -43,10 +45,11 @@ class ReviewsModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
-            gallery_id_1: {
+            // gallery_ids include all gallery_id separated by comma
+            gallery_ids: {
                 type: String,
-                stringType: 'bpchar',
-                size: 40,
+                stringType: 'text',
+                size: 0,
                 isNullable: true
             },
             stars_level: {

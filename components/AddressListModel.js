@@ -1,5 +1,7 @@
 'use strict'
 
+// source: https://dbdiagram.io/d/61471a3f825b5b014608f160
+
 const PostgresORM = require('postgresql-orm')
 
 class AddressListModel extends PostgresORM {

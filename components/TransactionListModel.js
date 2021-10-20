@@ -1,5 +1,7 @@
 'use strict'
 
+// source: https://dbdiagram.io/d/61471a3f825b5b014608f160
+
 const PostgresORM = require('postgresql-orm')
 
 class TransactionListModel extends PostgresORM {
@@ -154,9 +156,9 @@ class TransactionListModel extends PostgresORM {
                 size: 40,
                 isNullable: true
             },
-            trash_status: {
-                type: Number,
-                stringType: 'int4',
+            is_trash: {
+                type: Boolean,
+                stringType: 'boolean',
                 size: 0,
                 isNullable: false,
                 default: 0
@@ -183,15 +185,15 @@ class TransactionListModel extends PostgresORM {
                 uniq: true
             },
             trash_status: {
-                keys: {trash_status: -1},
+                keys: {is_trash: -1},
                 uniq: false
             },
             ukm_id: {
                 keys: {ukm_id: -1},
                 uniq: false
             },
-            active_trx: {
-                keys: {user_id: -1, trx_status: 1},
+            user_id: {
+                keys: {user_id: -1},
                 uniq: false
             },
             date: { // untuk sorting

@@ -4,9 +4,9 @@
 
 const PostgresORM = require('postgresql-orm')
 
-class ProductsModel extends PostgresORM {
+class ProductEmbededModel extends PostgresORM {
     get tableName () {
-        return 'product_list'
+        return 'product_embeded'
     }
 
     get connection () {
@@ -27,82 +27,56 @@ class ProductsModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            store_id: {
+            product_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
                 isNullable: false
             },
-            estalase_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: true
-            },
-            category_id: {
+            account_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
                 isNullable: false
             },
-            name: {
+            is_custom: {
+                type: Boolean,
+                stringType: 'boolean',
+                size: 0,
+                isNullable: false
+            },
+            custom_title: {
                 type: String,
                 stringType: 'bpchar',
                 size: 50,
-                isNullable: false
+                isNullable: true
             },
-            description: {
+            custom_description: {
                 type: String,
                 stringType: 'text',
                 size: 0,
-                isNullable: false
+                isNullable: true
             },
-            price: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: false
-            },
-            discount: {
-                type: Number,
-                stringType: 'float4',
-                size: 0,
-                isNullable: false
-            },
-            stock: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: false
-            },
-            tax: {
+            custom_price: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
                 isNullable: true
             },
-            is_active: {
-                type: Boolean,
-                stringType: 'bool',
+            custom_price: {
+                type: Number,
+                stringType: 'int4',
                 size: 0,
-                isNullable: false,
-                default: false
-            },
-            is_pending_review: {
-                type: Boolean,
-                stringType: 'bool',
-                size: 0,
-                isNullable: false,
-                default: true
-            },
-            is_blocked: {
-                type: Boolean,
-                stringType: 'bool',
-                size: 0,
-                isNullable: false,
-                default: false
+                isNullable: true
             },
             is_trash: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: false
+            },
+            is_active: {
                 type: Boolean,
                 stringType: 'bool',
                 size: 0,
@@ -130,28 +104,41 @@ class ProductsModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
-            category: { // digunakan untuk pencarian by category
-                keys: {category_id: 1},
-                uniq: false
-            },
-            location: { // digunakan untuk pencarian by location
-                keys: {location_id: 1},
-                uniq: false
-            },
-            product_name: { // digunakan untuk pencarian by keyword
-                keys: {name: 1},
-                uniq: false
-            },
             is_trash: {
-                keys: {is_trash: -1},
+                keys: {is_trash: 1},
                 uniq: false
             },
-            is_pending_review: { // digunakan untuk pencarian by pending review
-                keys: {is_pending_review: 1},
+            account_id: {
+                keys: {account_id: 1},
                 uniq: false
             },
-            is_blocked: { // digunakan untuk pencarian by blocked status
-                keys: {is_blocked: 1},
+            uploader_id: {
+                keys: {uploader_id: 1},
+                uniq: false
+            },
+            by_uploader: {
+                keys: {uploader_id: 1},
+                uniq: false
+            },
+            by_index: {
+                keys: {image_index: 1},
+                uniq: false
+            },
+            // use for product_detail query
+            product_list: {
+                keys: {
+                    product_id: 1,
+                    image_status: -1,
+                    index: 1
+                },
+                uniq: false
+            },
+            // use for product_detail query
+            product_detail: {
+                keys: {
+                    product_id: 1,
+                    image_status: -1
+                },
                 uniq: false
             },
             date: { // untuk sorting kebanyakan DESC
@@ -160,9 +147,11 @@ class ProductsModel extends PostgresORM {
             }
         }
     }
+
+    /* functions */
 }
 
 module.exports = function (opt = {}) {
-    const model = new ProductsModel(opt)
+    const model = new ProductEmbededModel(opt)
     return model
 }

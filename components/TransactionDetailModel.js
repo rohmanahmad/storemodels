@@ -1,5 +1,7 @@
 'use strict'
 
+// source: https://dbdiagram.io/d/61471a3f825b5b014608f160
+
 const PostgresORM = require('postgresql-orm')
 
 class TransactionDetailModel extends PostgresORM {
@@ -85,13 +87,6 @@ class TransactionDetailModel extends PostgresORM {
                 size: 0,
                 isNullable: true
             },
-            trash_status: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: false,
-                default: 0
-            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',
@@ -112,10 +107,6 @@ class TransactionDetailModel extends PostgresORM {
             primary: {
                 keys: {_id: -1},
                 uniq: true
-            },
-            trash_status: {
-                keys: {trash_status: -1},
-                uniq: false
             },
             date: { // untuk sorting
                 keys: {created_at: -1},

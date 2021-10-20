@@ -1,10 +1,12 @@
 'use strict'
 
+// source: https://dbdiagram.io/d/61471a3f825b5b014608f160
+
 const PostgresORM = require('postgresql-orm')
 
-class UKMConfigurationModel extends PostgresORM {
+class ProductCategoryList extends PostgresORM {
     get tableName () {
-        return 'ukm_configuration'
+        return 'product_category_list'
     }
 
     get connection () {
@@ -25,30 +27,44 @@ class UKMConfigurationModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            ukm_id: {
+            // yaitu parentid masih dari tabel yg sama
+            parent_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: false
-            }, // relasi ke transactions.id
-            key: {
+                isNullable: true
+            },
+            image_gallery_id: {
                 type: String,
                 stringType: 'bpchar',
-                size: 0,
+                size: 40,
+                isNullable: true
+            },
+            name: {
+                type: String,
+                stringType: 'bpchar',
+                size: 30,
                 isNullable: false
-            }, // relase ke product_list.id
-            value: {
+            },
+            description: {
                 type: String,
                 stringType: 'text',
                 size: 0,
-                isNullable: false
+                isNullable: true
             },
-            trash_status: {
-                type: Number,
-                stringType: 'int4',
+            is_active: {
+                type: Boolean,
+                stringType: 'bool',
                 size: 0,
                 isNullable: false,
-                default: 0
+                default: true
+            },
+            is_trash: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: true
             },
             created_at: {
                 type: Date,
@@ -71,19 +87,18 @@ class UKMConfigurationModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
-            trash_status: {
-                keys: {trash_status: -1},
+            is_trash: {
+                keys: {is_trash: -1},
                 uniq: false
             },
-            date: { // untuk sorting
-                keys: {created_at: -1},
-                uniq: false
+            date: { // untuk sorting kebanyakan DESC
+                keys: {created_at: -1}
             }
         }
     }
 }
 
 module.exports = function (opt = {}) {
-    const model = new UKMConfigurationModel(opt)
+    const model = new ProductCategoryList(opt)
     return model
 }

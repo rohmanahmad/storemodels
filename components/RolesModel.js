@@ -1,5 +1,7 @@
 'use strict'
 
+// source: https://dbdiagram.io/d/61471a3f825b5b014608f160
+
 const PostgresORM = require('postgresql-orm')
 
 class Roles extends PostgresORM {
@@ -25,30 +27,52 @@ class Roles extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            roles_name: { // roles_name berupa admin, client, vendor
+            name: { // name berupa admin, client, vendor
                 type: String,
                 stringType: 'bpchar',
                 size: 20,
                 isNullable: false
             },
-            roles: { // roles berupa string, hanya dipisah menggunakan koma
+            ability: { // roles berupa string, hanya dipisah menggunakan koma
                 type: String,
-                stringType: 'text',
-                size: 0,
+                stringType: 'bpchar',
+                size: 30,
                 isNullable: false
             },
-            status: {
-                type: Number,
-                stringType: 'int4',
+            in_admin: {
+                type: Boolean,
+                stringType: 'boolean',
                 size: 0,
-                isNullable: false
+                isNullable: true,
+                default: false
             },
-            trash_status: {
-                type: Number,
-                stringType: 'int4',
+            in_ukm: {
+                type: Boolean,
+                stringType: 'boolean',
                 size: 0,
-                isNullable: false,
-                default: 0
+                isNullable: true,
+                default: false
+            },
+            in_customer: {
+                type: Boolean,
+                stringType: 'boolean',
+                size: 0,
+                isNullable: true,
+                default: false
+            },
+            in_kurir: {
+                type: Boolean,
+                stringType: 'boolean',
+                size: 0,
+                isNullable: true,
+                default: false
+            },
+            is_trash: {
+                type: Boolean,
+                stringType: 'boolean',
+                size: 0,
+                isNullable: true,
+                default: false
             },
             created_at: {
                 type: Date,
@@ -76,7 +100,7 @@ class Roles extends PostgresORM {
                 uniq: false
             },
             name: { // mencari dengan spesifik server dan jenis
-                keys: {roles_name: -1},
+                keys: {name: -1},
                 uniq: false
             },
             date: { // untuk sorting kebanyakan DESC

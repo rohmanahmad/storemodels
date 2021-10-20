@@ -1,5 +1,7 @@
 'use strict'
 
+// source: https://dbdiagram.io/d/61471a3f825b5b014608f160
+
 const PostgresORM = require('postgresql-orm')
 
 class ProductFavoritesModel extends PostgresORM {
@@ -38,8 +40,8 @@ class ProductFavoritesModel extends PostgresORM {
                 isNullable: false
             },
             trash_status: {
-                type: Number,
-                stringType: 'int4',
+                type: Boolean,
+                stringType: 'boolean',
                 size: 0,
                 isNullable: false,
                 default: 0
@@ -65,8 +67,12 @@ class ProductFavoritesModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
+            product_by_customer: {
+                keys: {product_id: -1, customer_id: -1},
+                uniq: true
+            },
             trash_status: {
-                keys: {trash_status: -1},
+                keys: {is_trash: -1},
                 uniq: false
             },
             date: { // untuk sorting kebanyakan DESC

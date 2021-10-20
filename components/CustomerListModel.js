@@ -50,13 +50,6 @@ class CustomerListModel extends PostgresORM {
                 size: 30,
                 isNullable: true
             },
-            // nick_name (nama panggilan)
-            nick_name: {
-                type: String,
-                stringType: 'bpchar',
-                size: 30,
-                isNullable: true
-            },
             /*
              * verification_photo_id:
              * verifikasi dilakukan untuk menentukan apakah real atau enggak

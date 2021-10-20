@@ -1,14 +1,16 @@
 'use strict'
 
+// source: https://dbdiagram.io/d/61471a3f825b5b014608f160
+
 const PostgresORM = require('postgresql-orm')
 
 /*
     tabel ini tidak diubah secara langsung oleh pemilik maupun admin.
     ini otomatis diubah berdasarkan data dari review dan dihitung menggunakan formula
 */
-class RateSummaryModel extends PostgresORM {
+class ProductReviewSummaryModel extends PostgresORM {
     get tableName () {
-        return 'product_reviews_summary'
+        return 'product_review_summary'
     }
 
     get connection () {
@@ -35,7 +37,21 @@ class RateSummaryModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            stars_level: {
+            views_total: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false,
+                default: 0
+            },
+            stars_total: {
+                type: Number,
+                stringType: 'int4',
+                size: 0,
+                isNullable: false,
+                default: 0
+            },
+            stars_rate: {
                 type: Number,
                 stringType: 'float4',
                 size: 0,
@@ -47,13 +63,6 @@ class RateSummaryModel extends PostgresORM {
                 stringType: 'int4',
                 size: 0,
                 isNullable: false
-            },
-            is_trash: {
-                type: Boolean,
-                stringType: 'bool',
-                size: 0,
-                isNullable: false,
-                default: false
             },
             created_at: {
                 type: Date,
@@ -95,6 +104,6 @@ class RateSummaryModel extends PostgresORM {
 }
 
 module.exports = function (opt = {}) {
-    const model = new RateSummaryModel(opt)
+    const model = new ProductReviewSummaryModel(opt)
     return model
 }

@@ -1,5 +1,7 @@
 'use strict'
 
+// source: https://dbdiagram.io/d/61471a3f825b5b014608f160
+
 const PostgresORM = require('postgresql-orm')
 
 class UKMSummariesModel extends PostgresORM {
@@ -35,80 +37,99 @@ class UKMSummariesModel extends PostgresORM {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: false,
+                default: 0
             },
             total_owned_products: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: false,
+                default: 0
             },
             total_embed_products: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: false,
+                default: 0
             },
             total_success_trx: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: false,
+                default: 0
             },
             total_pending_trx: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: false,
+                default: 0
             },
             total_cancel_trx: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: false,
+                default: 0
             },
             rate_trx_7days_ago: {
                 type: Number,
-                stringType: 'int4',
+                stringType: 'float4',
                 size: 0,
-                isNullable: false
+                isNullable: false,
+                default: 0
             },
             total_customer_reports: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: false,
+                default: 0
             },
             total_members: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: false,
+                default: 0
             },
             rate_chats_7days_ago: {
                 type: Number,
-                stringType: 'int4',
+                stringType: 'float4',
                 size: 0,
-                isNullable: false
+                isNullable: false,
+                default: 0
             },
             slowest_response_time: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: false,
+                default: 0
             },
             fastest_response_time: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
-                isNullable: false
+                isNullable: false,
+                default: 0
+            },
+            rate_response_time: {
+                type: Number,
+                stringType: 'float4',
+                size: 0,
+                isNullable: false,
+                default: 0
             },
             trash_status: {
                 type: Number,
                 stringType: 'int4',
                 size: 0,
                 isNullable: false,
-                default: 0
+                default: false
             },
             created_at: {
                 type: Date,
@@ -132,7 +153,7 @@ class UKMSummariesModel extends PostgresORM {
                 uniq: true
             },
             trash_status: {
-                keys: {trash_status: -1},
+                keys: {is_trash: -1},
                 uniq: false
             },
             ukm_id: { // digunakan untuk pencarian by keyword

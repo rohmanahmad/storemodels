@@ -78,7 +78,7 @@ class UserTokensModel extends PostgresORM {
                 uniq: true
             },
             trash_status: {
-                keys: {trash_status: -1},
+                keys: {is_trash: -1},
                 uniq: false
             },
             token_active: { // digunakan untuk get token by userid
