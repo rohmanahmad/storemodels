@@ -1,10 +1,12 @@
 'use strict'
 
+// source: https://dbdiagram.io/d/61471a3f825b5b014608f160
+
 const PostgresORM = require('postgresql-orm')
 
-class KurirAgentsModel extends PostgresORM {
+class OfficeUsers extends PostgresORM {
     get tableName () {
-        return 'kurir_agent'
+        return 'office_users'
     }
 
     get connection () {
@@ -25,68 +27,62 @@ class KurirAgentsModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            user_id: {
+            username: {
                 type: String,
                 stringType: 'bpchar',
-                size: 40,
+                size: 20,
                 isNullable: false
             },
-            company_id: {
+            email: {
                 type: String,
                 stringType: 'bpchar',
-                size: 40,
+                size: 100,
                 isNullable: false
             },
-            agent_firstname: {
+            phone_number: {
                 type: String,
                 stringType: 'bpchar',
-                size: 30,
-                isNullable: false
+                size: 16,
+                isNullable: true
             },
-            agent_lastname: {
+            password: {
                 type: String,
-                stringType: 'bpchar',
-                size: 30,
-                isNullable: true
-            },
-            profile_gallery_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: true
-            },
-            // kurir id / hanya untuk kurir lokal aja. jika kurir luar, akan ditulis global
-            address_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: true
-            },
-            // reputation : 0 - 5
-            agent_reputation: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: true
-            },
-            /* 
-            * - 0 : nonactive / need confirmation
-            * - 1 : active / available
-            * - 2 : banned / not available in time period
-            * - 3 : blocked / black list / not-available 
-            */
-            agent_status: {
-                type: Number,
-                stringType: 'int4',
+                stringType: 'text',
                 size: 0,
                 isNullable: false
             },
-            trash_status: {
-                type: Number,
-                stringType: 'int4',
+            is_pending: {
+                type: Boolean,
+                stringType: 'bool',
                 size: 0,
                 isNullable: false,
-                default: 0
+                default: false
+            },
+            is_blocked: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: false
+            },
+            is_trash: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false,
+                default: false
+            },
+            ref_createdby_id: { // office_users._id (self relationship)
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
+            ref_updatedby_id: { // office_users._id (self relationship)
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: true
             },
             created_at: {
                 type: Date,
@@ -109,23 +105,33 @@ class KurirAgentsModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
-            trash_status: {
-                keys: {trash_status: -1},
+            is_trash: {
+                keys: {is_trash: 1},
                 uniq: false
             },
-            search_by_name: {
-                keys: {agent_firstname: 1},
+            username: {
+                keys: {username: 1},
+                uniq: true
+            },
+            email: {
+                keys: {email: 1},
+                uniq: true
+            },
+            phone_number: {
+                keys: {phone_number: 1},
                 uniq: false
             },
-            date: { // untuk sorting
+            date: { // untuk sorting kebanyakan DESC
                 keys: {created_at: -1},
                 uniq: false
             }
         }
     }
+
+    /* functions */
 }
 
 module.exports = function (opt = {}) {
-    const model = new KurirAgentsModel(opt)
+    const model = new OfficeUsers(opt)
     return model
 }

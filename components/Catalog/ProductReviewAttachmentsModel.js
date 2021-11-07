@@ -1,18 +1,16 @@
 'use strict'
 
-// source: https://dbdiagram.io/d/61471a3f825b5b014608f160
-
 const PostgresORM = require('postgresql-orm')
 
-class ReviewsModel extends PostgresORM {
+class ProductReviewAttachments extends PostgresORM {
     get tableName () {
-        return 'product_reviews'
+        return 'product_review_attachments'
     }
 
     get connection () {
         return 'pg'
     }
-    
+
     get schemas () {
         return {
             id: {
@@ -27,50 +25,29 @@ class ReviewsModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            product_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 20,
-                isNullable: false
-            },
-            customer_id: {
+            review_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
                 isNullable: false
             },
-            text: {
+            attachment_type: {
+                type: String,
+                stringType: 'bpchar',
+                size: 20,
+                isNullable: false // image / video
+            },
+            attachment_url: {
                 type: String,
                 stringType: 'text',
                 size: 0,
                 isNullable: false
             },
-            // gallery_ids include all gallery_id separated by comma
-            gallery_ids: {
+            attachment_folder_path: {
                 type: String,
                 stringType: 'text',
                 size: 0,
-                isNullable: true
-            },
-            stars_level: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
                 isNullable: false
-            },
-            is_published: {
-                type: Boolean,
-                stringType: 'bool',
-                size: 0,
-                isNullable: false,
-                default: false
-            },
-            is_pending: {
-                type: Boolean,
-                stringType: 'bool',
-                size: 0,
-                isNullable: false,
-                default: false
             },
             is_trash: {
                 type: Boolean,
@@ -90,9 +67,9 @@ class ReviewsModel extends PostgresORM {
                 stringType: 'timestamp',
                 size: 0,
                 isNullable: true
-            },
+            }
         }
-    }
+    } 
 
     get index () {
         return {
@@ -101,29 +78,18 @@ class ReviewsModel extends PostgresORM {
                 uniq: true
             },
             is_trash: {
-                keys: {is_trash: 1},
+                keys: {is_trash: -1},
                 uniq: false
             },
-            is_pending: {
-                keys: {is_pending: 1},
+            created_date: { // untuk sorting kebanyakan DESC
+                keys: {created_at: -1},
                 uniq: false
-            },
-            is_published: {
-                keys: {is_published: 1},
-                uniq: false
-            },
-            product: {
-                keys: {product_id: -1},
-                uniq: false
-            },
-            date: { // untuk sorting kebanyakan DESC
-                keys: {created_at: -1}
             }
         }
     }
 }
 
 module.exports = function (opt = {}) {
-    const model = new ReviewsModel(opt)
+    const model = new ProductReviewAttachments(opt)
     return model
 }

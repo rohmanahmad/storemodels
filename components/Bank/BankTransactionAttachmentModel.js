@@ -2,9 +2,9 @@
 
 const PostgresORM = require('postgresql-orm')
 
-class BankAccounts extends PostgresORM {
+class BankTransactionModel extends PostgresORM {
     get tableName () {
-        return 'bank_accounts'
+        return 'bank_transaction_attachments'
     }
 
     get connection () {
@@ -25,42 +25,35 @@ class BankAccounts extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            bank_code: {
+            title: {
                 type: String,
                 stringType: 'bpchar',
-                size: 5, // kode bank jika trf menggunakan atm ke bank lain
+                size: 255,
                 isNullable: false
             },
-            bank_name: {
-                type: String,
-                stringType: 'bpchar',
-                size: 20, // nama bank: bca, mandiri, bri, dsb
-                isNullable: false
-            },
-            no_rec: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40, // digit nomor rekening
-                isNullable: true
-            },
-            account_name: { // nama pemilik rekening / sesuaikan dengan nama asli rekening
-                type: String,
-                stringType: 'bpchar',
-                size: 50,
-                isNullable: true
-            },
-            branch_name: {
-                type: String,
-                stringType: 'bpchar',
-                size: 50, // biasanya dipakai jika hanya diperlukan sj
-                isNullable: true
-            },
-            trash_status: {
-                type: Number,
-                stringType: 'int4',
+            description: {
+                type: Text,
+                stringType: 'text',
                 size: 0,
-                isNullable: false,
-                default: 0
+                isNullable: true
+            },
+            ref_bank_transaction_id: { // bank_transactions._id
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
+            ref_file_id: { // files._id
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
+            is_trash: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false
             },
             created_at: {
                 type: Date,
@@ -84,12 +77,12 @@ class BankAccounts extends PostgresORM {
                 uniq: true
             },
             trash_status: {
-                keys: {trash_status: -1},
+                keys: {is_trash: -1},
                 uniq: false
             },
-            no_rec: { // mencari dengan spesifik server dan jenis
-                keys: {no_rec: -1, trash_status: -1},
-                uniq: true
+            ref_bank_transaction_id: {
+                keys: {ref_bank_transaction_id: -1},
+                uniq: false
             },
             date: { // untuk sorting kebanyakan DESC
                 keys: {created_at: -1}
@@ -99,6 +92,6 @@ class BankAccounts extends PostgresORM {
 }
 
 module.exports = function (opt = {}) {
-    const model = new BankAccounts(opt)
+    const model = new BankTransactionModel(opt)
     return model
 }

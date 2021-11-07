@@ -1,12 +1,10 @@
 'use strict'
 
-// source: https://dbdiagram.io/d/61471a3f825b5b014608f160
-
 const PostgresORM = require('postgresql-orm')
 
-class ProductCategoryList extends PostgresORM {
+class VerificationImages extends PostgresORM {
     get tableName () {
-        return 'product_category_list'
+        return 'verification_images'
     }
 
     get connection () {
@@ -27,39 +25,19 @@ class ProductCategoryList extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            // yaitu parentid masih dari tabel yg sama
-            parent_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: true
-            },
-            image_gallery_id: {
-                type: String,
-                stringType: 'bpchar',
-                size: 40,
-                isNullable: true
-            },
-            name: {
-                type: String,
-                stringType: 'bpchar',
-                size: 30,
-                isNullable: false
-            },
-            description: {
+            url: {
                 type: String,
                 stringType: 'text',
                 size: 0,
-                isNullable: true
+                isNullable: false
             },
-            is_active: {
-                type: Boolean,
-                stringType: 'bool',
+            folder_path: {
+                type: String,
+                stringType: 'text',
                 size: 0,
-                isNullable: false,
-                default: true
+                isNullable: false
             },
-            is_trash: {
+            is_pending: {
                 type: Boolean,
                 stringType: 'bool',
                 size: 0,
@@ -79,7 +57,7 @@ class ProductCategoryList extends PostgresORM {
                 isNullable: true
             }
         }
-    }
+    } 
 
     get index () {
         return {
@@ -87,18 +65,19 @@ class ProductCategoryList extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
-            is_trash: {
-                keys: {is_trash: -1},
+            is_pending: {
+                keys: {is_pending: -1},
                 uniq: false
             },
-            date: { // untuk sorting kebanyakan DESC
-                keys: {created_at: -1}
+            created_date: { // untuk sorting kebanyakan DESC
+                keys: {created_at: -1},
+                uniq: false
             }
         }
     }
 }
 
 module.exports = function (opt = {}) {
-    const model = new ProductCategoryList(opt)
+    const model = new VerificationImages(opt)
     return model
 }

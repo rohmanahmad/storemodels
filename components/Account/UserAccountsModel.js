@@ -41,17 +41,17 @@ class UserAccountsModel extends PostgresORM {
                 size: 0,
                 isNullable: true
             },
-            /* phonenumber wajib */
-            phonenumber: {
+            /* phone_number wajib */
+            phone_number: {
                 type: String,
                 stringType: 'bpchar',
                 size: 20,
                 isNullable: false
             },
-            role: {
-                type: String,
-                stringType: 'bpchar',
-                size: 10,
+            is_ukm: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
                 isNullable: false
             },
             is_pending_confirmation: {
@@ -79,6 +79,18 @@ class UserAccountsModel extends PostgresORM {
                 isNullable: false,
                 default: false
             },
+            ref_createdby_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: true
+            },
+            ref_updatedby_id: {
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: true
+            },
             created_at: {
                 type: Date,
                 stringType: 'timestamp',
@@ -100,8 +112,8 @@ class UserAccountsModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
-            trash_status: {
-                keys: {trash_status: -1},
+            is_trash: {
+                keys: {is_trash: -1},
                 uniq: false
             },
             user_email: { // digunakan untuk getInformation

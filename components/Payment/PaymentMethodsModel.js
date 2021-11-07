@@ -2,9 +2,9 @@
 
 const PostgresORM = require('postgresql-orm')
 
-class ActivityLogModel extends PostgresORM {
+class PaymentRefsModel extends PostgresORM {
     get tableName () {
-        return 'application_events_log'
+        return 'payment_methods'
     }
 
     get connection () {
@@ -25,30 +25,17 @@ class ActivityLogModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            type: {
+            bank_method_id: { // i_banking, m_banking, virtual_account, transfer
                 type: String,
                 stringType: 'bpchar',
-                size: 20,
+                size: 40,
                 isNullable: false
             },
-            server_ip: {
+            customer_bank_id: {
                 type: String,
                 stringType: 'bpchar',
-                size: 20,
-                isNullable: true
-            },
-            data: {
-                type: Object,
-                stringType: 'json',
-                size: 0,
-                isNullable: true
-            },
-            trash_status: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: false,
-                default: 0
+                size: 40,
+                isNullable: false
             },
             created_at: {
                 type: Date,
@@ -71,12 +58,8 @@ class ActivityLogModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
-            trash_status: {
-                keys: {trash_status: -1},
-                uniq: false
-            },
-            server: { // mencari dengan spesifik server dan jenis
-                keys: {server_ip: -1, type: -1},
+            is_trash: {
+                keys: {is_trash: -1},
                 uniq: false
             },
             date: { // untuk sorting kebanyakan DESC
@@ -84,9 +67,11 @@ class ActivityLogModel extends PostgresORM {
             }
         }
     }
+
+    /* functions */
 }
 
 module.exports = function (opt = {}) {
-    const model = new ActivityLogModel(opt)
+    const model = new PaymentRefsModel(opt)
     return model
 }

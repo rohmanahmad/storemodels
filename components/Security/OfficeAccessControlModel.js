@@ -4,9 +4,9 @@
 
 const PostgresORM = require('postgresql-orm')
 
-class Roles extends PostgresORM {
+class OfficeAccessControl extends PostgresORM {
     get tableName () {
-        return 'roles'
+        return 'office_access_control'
     }
 
     get connection () {
@@ -27,40 +27,33 @@ class Roles extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            name: { // name berupa admin, client, vendor
+            ref_office_user_id: { // office_users._id
                 type: String,
                 stringType: 'bpchar',
-                size: 20,
+                size: 40,
                 isNullable: false
             },
-            ability: { // roles berupa string, hanya dipisah menggunakan koma
+            access_name: { // access bagian ex: product
                 type: String,
                 stringType: 'bpchar',
                 size: 30,
                 isNullable: false
             },
-            in_admin: {
+            is_read_access: { // access ke global
                 type: Boolean,
                 stringType: 'boolean',
                 size: 0,
                 isNullable: true,
                 default: false
             },
-            in_ukm: {
+            is_write_access: { // access ke global
                 type: Boolean,
                 stringType: 'boolean',
                 size: 0,
                 isNullable: true,
                 default: false
             },
-            in_customer: {
-                type: Boolean,
-                stringType: 'boolean',
-                size: 0,
-                isNullable: true,
-                default: false
-            },
-            in_kurir: {
+            is_own_access: { // ini hanya diperbolehkan read-write yg dimiliki saja, ex: produk, review
                 type: Boolean,
                 stringType: 'boolean',
                 size: 0,
@@ -96,11 +89,11 @@ class Roles extends PostgresORM {
                 uniq: true
             },
             trash_status: {
-                keys: {trash_status: -1},
+                keys: {is_trash: -1},
                 uniq: false
             },
-            name: { // mencari dengan spesifik server dan jenis
-                keys: {name: -1},
+            ref_office_user_id: { // mencari dengan spesifik server dan jenis
+                keys: {ref_office_user_id: 1},
                 uniq: false
             },
             date: { // untuk sorting kebanyakan DESC
@@ -113,6 +106,6 @@ class Roles extends PostgresORM {
 }
 
 module.exports = function (opt = {}) {
-    const model = new Roles(opt)
+    const model = new OfficeAccessControl(opt)
     return model
 }

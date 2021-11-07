@@ -1,12 +1,10 @@
 'use strict'
 
-// source: https://dbdiagram.io/d/61471a3f825b5b014608f160
-
 const PostgresORM = require('postgresql-orm')
 
-class UserActivityModel extends PostgresORM {
+class BankTransactionModel extends PostgresORM {
     get tableName () {
-        return 'user_activities'
+        return 'bank_transactions'
     }
 
     get connection () {
@@ -27,79 +25,79 @@ class UserActivityModel extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            zone: {
+            ref_bank_account_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 20,
                 isNullable: false
             },
-            method: {
-                type: String,
-                stringType: 'bpchar',
-                size: 20,
-                isNullable: false
-            },
-            endpoint: {
-                type: String,
-                stringType: 'bpchar',
-                size: 200,
-                isNullable: false
-            },
-            type: {
-                type: String,
-                stringType: 'bpchar',
-                size: 20,
-                isNullable: false
-            },
-            server_ip: {
-                type: String,
-                stringType: 'bpchar',
-                size: 20,
-                isNullable: true
-            },
-            from_ip: {
-                type: String,
-                stringType: 'bpchar',
-                size: 20,
-                isNullable: true
-            },
-            userid: {
+            ref_transaction_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: true
+                isNullable: false
             },
-            user_role: {
+            transaction_type: { // m_banking, i_banking, virtual_account, transfer
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
-                isNullable: true
+                isNullable: false
             },
-            data: {
-                type: Object,
-                stringType: 'json',
+            ref_attachment_id: { // relasi 1 to * ke bank.TransactionAttachments
+                type: String,
+                stringType: 'text',
                 size: 0,
                 isNullable: true
             },
-            time_request: {
-                type: Date,
-                stringType: 'timestamp',
+            ref_approved_by_id: { // relasi ke user_account yg rolenya sebagai admin / operation
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
+                isNullable: false
+            },
+            bank_trx_note: {
+                type: String,
+                stringType: 'text',
+                size: 0,
+                isNullable: true
+            },
+            is_pending: {
+                type: Boolean,
+                stringType: 'bool',
                 size: 0,
                 isNullable: false
             },
-            time_response: {
+            action_type: { // rejected, approved
+                type: String,
+                stringType: 'bpchar',
+                size: 0,
+                isNullable: false
+            },
+            action_at: {
                 type: Date,
                 stringType: 'timestamp',
                 size: 0,
                 isNullable: true
             },
-            total_time: {
-                type: Number,
-                stringType: 'int4',
-                size: 0,
+            ref_actionby_id: { // office_users._id
+                type: String,
+                stringType: 'bpchar',
+                size: 40,
                 isNullable: true
+            },
+            is_trash: {
+                type: Boolean,
+                stringType: 'bool',
+                size: 0,
+                isNullable: false
             },
             created_at: {
+                type: Date,
+                stringType: 'timestamp',
+                size: 0,
+                isNullable: false
+            },
+            updated_at: {
                 type: Date,
                 stringType: 'timestamp',
                 size: 0,
@@ -114,30 +112,18 @@ class UserActivityModel extends PostgresORM {
                 keys: {_id: -1},
                 uniq: true
             },
-            server: { // mencari dengan spesifik server dan jenis
-                keys: {server_ip: -1, type: -1},
+            trash_status: {
+                keys: {is_trash: -1},
                 uniq: false
             },
-            userid: { // mencari dengan spesifik server dan jenis
-                keys: {userid: -1},
-                uniq: false
-            },
-            zone: { // mencari dengan spesifik server dan jenis
-                keys: {zone: 1},
-                uniq: false
-            },
-            from_ip: { // mencari dengan spesifik server dan jenis
-                keys: {from_ip: 1},
-                uniq: false
-            },
-            total_time_execution: { // untuk sorting kebanyakan DESC
-                keys: {total_time: -1}
+            date: { // untuk sorting kebanyakan DESC
+                keys: {created_at: -1}
             }
         }
     }
 }
 
 module.exports = function (opt = {}) {
-    const model = new UserActivityModel(opt)
+    const model = new BankTransactionModel(opt)
     return model
 }
