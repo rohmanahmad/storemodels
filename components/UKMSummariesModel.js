@@ -120,7 +120,7 @@ class Model extends PostgresORM {
                 isNullable: false,
                 default: 0
             },
-            is_status: {
+            is_trash: {
                 type: Boolean,
                 stringType: 'bool',
                 size: 0,
@@ -153,7 +153,7 @@ class Model extends PostgresORM {
                 uniq: false
             },
             ukm_id: { // digunakan untuk pencarian by keyword
-                keys: {ukm_id: 1},
+                keys: {ref_ukm_id: 1},
                 uniq: true
             },
             date: { // untuk sorting kebanyakan DESC

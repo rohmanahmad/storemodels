@@ -34,7 +34,7 @@ class Model extends PostgresORM {
                 isNullable: true
             },
             description_status: {
-                type: Text,
+                type: String,
                 stringType: 'text',
                 size: 0,
                 isNullable: true

@@ -81,10 +81,6 @@ class Model extends PostgresORM {
                 keys: { _id: -1 },
                 uniq: true
             },
-            is_trash: {
-                keys: { is_trash: -1 },
-                uniq: false
-            },
             product: {
                 keys: { ref_product_id: 1 },
                 uniq: false

@@ -54,17 +54,12 @@ class TasksModel extends PostgresORM {
                 size: 0,
                 isNullable: true
             },
-            /* 
-            avaiable statuses:
-                - 0 : active
-                - 1 : trash
-            */
-            trash_status: {
-                type: Number,
-                stringType: 'int4',
+            is_trash: {
+                type: Boolean,
+                stringType: 'bool',
                 size: 0,
                 isNullable: false,
-                default: 0
+                default: false
             },
             // tanggal kapan seharusnya di eksekusi
             target_execution: {
@@ -102,7 +97,7 @@ class TasksModel extends PostgresORM {
                 uniq: true
             },
             trash_status: {
-                keys: {trash_status: -1},
+                keys: {is_trash: -1},
                 uniq: false
             },
             executor_ip: { // mencari dengan spesifik server ip

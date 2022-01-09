@@ -37,7 +37,7 @@ class Model extends PostgresORM {
                 isNullable: true
             },
             url: {
-                type: Text,
+                type: String,
                 stringType: 'text',
                 size: 0,
                 isNullable: false
@@ -73,7 +73,7 @@ class Model extends PostgresORM {
                 isNullable: false
             },
             data: {
-                type: Text,
+                type: String,
                 stringType: 'text',
                 size: 0,
                 isNullable: true
@@ -110,10 +110,6 @@ class Model extends PostgresORM {
             primary: {
                 keys: {_id: -1},
                 uniq: true
-            },
-            is_trash: {
-                keys: {is_trash: -1},
-                uniq: false
             },
             total_response_time: {
                 keys: {total_response_time: -1},

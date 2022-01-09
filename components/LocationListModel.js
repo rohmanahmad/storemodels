@@ -42,7 +42,8 @@ class Model extends PostgresORM {
                 size: 40,
                 isNullable: true
             },
-            ref_kecamatan_id: { // untuk location tidak perlu pakai md5
+            // untuk location tidak perlu pakai md5
+            ref_kecamatan_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
@@ -117,8 +118,8 @@ class Model extends PostgresORM {
                 keys: { ref_propinsi_id: 1 },
                 uniq: false
             },
-            location_name: { // untuk sorting kebanyakan DESC
-                keys: { location_name: 1 },
+            name: { // untuk sorting kebanyakan DESC
+                keys: { name: 1 },
                 uniq: false
             }
         }

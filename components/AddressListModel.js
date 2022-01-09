@@ -6,7 +6,7 @@ const PostgresORM = require('postgresql-orm')
 
 class Model extends PostgresORM {
     get tableName () {
-        return 'location_list'
+        return 'address_list'
     }
 
     get schemas () {
@@ -79,7 +79,7 @@ class Model extends PostgresORM {
                 isNullable: false
             },
             recipest_email: { // email penerima
-                type: Text,
+                type: String,
                 stringType: 'text',
                 size: 0,
                 isNullable: false
@@ -116,7 +116,7 @@ class Model extends PostgresORM {
     get index () {
         return {
             primary: {
-                keys: { id: -1 },
+                keys: { _id: -1 },
                 uniq: true
             },
             is_trash: { // untuk sorting kebanyakan DESC
@@ -127,20 +127,8 @@ class Model extends PostgresORM {
                 keys: { ref_user_id: 1 },
                 uniq: false
             },
-            kecamatan_id: { // untuk sorting kebanyakan DESC
-                keys: { ref_kecamatan_id: 1 },
-                uniq: false
-            },
-            kab_kota_id: { // untuk sorting kebanyakan DESC
-                keys: { ref_kab_kota_id: 1 },
-                uniq: false
-            },
-            propinsi_id: { // untuk sorting kebanyakan DESC
-                keys: { ref_propinsi_id: 1 },
-                uniq: false
-            },
             location_name: { // untuk sorting kebanyakan DESC
-                keys: { location_name: 1 },
+                keys: { name: 1 },
                 uniq: false
             }
         }

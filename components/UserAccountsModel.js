@@ -44,7 +44,13 @@ class Model extends PostgresORM {
                 size: 20,
                 isNullable: false
             },
-            is_ukm: {
+            role: {
+                type: String,
+                stringType: 'bpchar',
+                size: 30,
+                isNullable: false
+            },
+            is_has_ukm: {
                 type: Boolean,
                 stringType: 'bool',
                 size: 0,
@@ -54,19 +60,22 @@ class Model extends PostgresORM {
                 type: Boolean,
                 stringType: 'bool',
                 size: 0,
-                isNullable: false
+                isNullable: false,
+                default: true
             },
             is_active: {
                 type: Boolean,
                 stringType: 'bool',
                 size: 0,
-                isNullable: false
+                isNullable: false,
+                default: false
             },
             is_blocked: {
                 type: Boolean,
                 stringType: 'bool',
                 size: 0,
-                isNullable: false
+                isNullable: false,
+                default: false
             },
             is_trash: {
                 type: Boolean,
@@ -113,11 +122,11 @@ class Model extends PostgresORM {
                 uniq: false
             },
             user_email: { // digunakan untuk getInformation
-                keys: {user_email: 1},
+                keys: {email: 1},
                 uniq: true
             },
             user_phonenumber: { // digunakan untuk getInformation by phonenumber
-                keys: {user_phonenumber: 1},
+                keys: {phone_number: 1},
                 uniq: true
             },
             pendings: { // digunakan untuk pencarian by pending status
@@ -130,10 +139,6 @@ class Model extends PostgresORM {
             },
             blocked: { // digunakan untuk pencarian by blocked status
                 keys: {is_blocked: 1},
-                uniq: false
-            },
-            trash: { // digunakan untuk pencarian by trash status
-                keys: {is_trash: 1},
                 uniq: false
             },
             created_date: { // untuk sorting kebanyakan DESC

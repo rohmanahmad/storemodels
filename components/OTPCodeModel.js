@@ -87,11 +87,11 @@ class Model extends PostgresORM {
                 uniq: false
             },
             otp_search: { // untuk sorting kebanyakan DESC
-                keys: {otp_code: 1, otp_type: 1, valid_until: -1},
+                keys: {otp_code: 1, otp_type: 1, expired_in: -1},
                 uniq: false
             },
-            account_id: { // untuk sorting kebanyakan DESC
-                keys: {account_id: 1},
+            ref_user_id: { // untuk sorting kebanyakan DESC
+                keys: {ref_user_id: 1},
                 uniq: false
             },
             date: { // untuk sorting kebanyakan DESC

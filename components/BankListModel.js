@@ -38,7 +38,7 @@ class Model extends PostgresORM {
                 stringType: 'bool',
                 size: 0,
                 isNullable: false,
-                default: 0
+                default: false
             },
             ref_created_by_id: {
                 type: String,

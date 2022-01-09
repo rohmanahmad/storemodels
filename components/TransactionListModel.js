@@ -142,7 +142,7 @@ class Model extends PostgresORM {
                 isNullable: true
             },
             changes_histories: {
-                type: Text,
+                type: String,
                 stringType: 'text',
                 size: 0,
                 isNullable: true
@@ -158,7 +158,7 @@ class Model extends PostgresORM {
                 stringType: 'boolean',
                 size: 0,
                 isNullable: false,
-                default: 0
+                default: false
             },
             created_at: {
                 type: Date,
@@ -190,7 +190,7 @@ class Model extends PostgresORM {
                 uniq: false
             },
             user_id: {
-                keys: {user_id: -1},
+                keys: {ref_user_id: -1},
                 uniq: false
             },
             date: { // untuk sorting

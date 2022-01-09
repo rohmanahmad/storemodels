@@ -62,11 +62,11 @@ class Model extends PostgresORM {
                 uniq: true
             },
             trash_status: {
-                keys: {trash_status: -1},
+                keys: {is_trash: -1},
                 uniq: false
             },
-            ukm: { // untuk mencari data berdasarkan
-                keys: {ukm_id: 1},
+            store_id: { // untuk mencari data berdasarkan
+                keys: {ref_store_id: 1},
                 uniq: false
             },
             date: { // untuk sorting

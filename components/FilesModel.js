@@ -72,19 +72,19 @@ class Model extends PostgresORM {
                 isNullable: false
             },
             domain: {
-                type: Text,
+                type: String,
                 stringType: 'text',
                 size: 0,
                 isNullable: true
             },
             folder_base: {
-                type: Text,
+                type: String,
                 stringType: 'text',
                 size: 0,
                 isNullable: true
             },
             file_name: {
-                type: Text,
+                type: String,
                 stringType: 'text',
                 size: 0,
                 isNullable: true

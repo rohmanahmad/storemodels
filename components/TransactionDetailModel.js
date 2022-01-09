@@ -48,7 +48,7 @@ class Model extends PostgresORM {
                 isNullable: false
             },
             trx_locked_product_description: {
-                type: Text,
+                type: String,
                 stringType: 'text',
                 size: 0,
                 isNullable: false
@@ -88,7 +88,7 @@ class Model extends PostgresORM {
                 default: 0
             },
             trx_note: {
-                type: Text,
+                type: String,
                 stringType: 'text',
                 size: 0,
                 isNullable: true
@@ -121,7 +121,7 @@ class Model extends PostgresORM {
                 uniq: true
             },
             trx_id: { // untuk sorting
-                keys: {trx_id: -1},
+                keys: {ref_trx_id: -1},
                 uniq: false
             },
             date: { // untuk sorting

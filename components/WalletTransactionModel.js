@@ -85,12 +85,12 @@ class WalletTransactionModel extends PostgresORM {
                 size: 0,
                 isNullable: false
             },
-            trash_status: {
-                type: Number,
-                stringType: 'int4',
+            is_trash: {
+                type: Boolean,
+                stringType: 'bool',
                 size: 0,
                 isNullable: false,
-                default: 0
+                default: false
             },
             created_at: {
                 type: Date,
@@ -114,7 +114,7 @@ class WalletTransactionModel extends PostgresORM {
                 uniq: true
             },
             trash_status: {
-                keys: {trash_status: -1},
+                keys: {is_trash: -1},
                 uniq: false
             },
             date: { // untuk sorting kebanyakan DESC

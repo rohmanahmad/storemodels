@@ -133,7 +133,7 @@ class Model extends PostgresORM {
                 uniq: false
             },
             name: { // untuk searching
-                keys: {name: -1},
+                keys: {store_name: -1},
                 uniq: false
             },
             date: { // untuk sorting

@@ -57,12 +57,8 @@ class Model extends PostgresORM {
                 uniq: true
             },
             product_by_customer: {
-                keys: {product_id: -1, customer_id: -1},
+                keys: {ref_product_id: -1, ref_customer_id: -1},
                 uniq: true
-            },
-            trash_status: {
-                keys: {is_trash: -1},
-                uniq: false
             },
             date: { // untuk sorting kebanyakan DESC
                 keys: {created_at: -1}

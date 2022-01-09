@@ -90,11 +90,11 @@ class Model extends PostgresORM {
                 uniq: true
             },
             category: { // digunakan untuk pencarian by category
-                keys: {category_id: 1},
+                keys: {ref_category_id: 1},
                 uniq: false
             },
-            product_name: { // digunakan untuk pencarian by keyword
-                keys: {name: 1},
+            search_product: { // digunakan untuk pencarian by keyword
+                keys: {name: 1, is_trash: 1},
                 uniq: false
             },
             is_trash: {
@@ -103,10 +103,6 @@ class Model extends PostgresORM {
             },
             is_pending_review: { // digunakan untuk pencarian by pending review
                 keys: {is_pending: 1},
-                uniq: false
-            },
-            is_blocked: { // digunakan untuk pencarian by blocked status
-                keys: {is_blocked: 1},
                 uniq: false
             },
             date: { // untuk sorting kebanyakan DESC
