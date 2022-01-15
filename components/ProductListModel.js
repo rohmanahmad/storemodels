@@ -23,7 +23,7 @@ class Model extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            ref_store_id: {
+            ref_distributor_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
@@ -122,7 +122,7 @@ class Model extends PostgresORM {
         return {
             garbages: {table: 'garbages', local: '_id', foreign: 'ref_id'},
             category_list: {table: 'category_list', local: 'ref_category_id', foreign: '_id'},
-            store_list: {table: 'store_list', local: 'ref_store_id', foreign: '_id'},
+            distributor_list: {table: 'distributor_list', local: 'ref_distributor_id', foreign: '_id'},
         }
     }
 }

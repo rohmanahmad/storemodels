@@ -4,7 +4,7 @@ const PostgresORM = require('postgresql-orm')
 
 class Model extends PostgresORM {
     get tableName () {
-        return 'roles'
+        return 'user_roles'
     }
 
     get schemas () {

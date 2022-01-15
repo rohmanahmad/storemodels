@@ -25,7 +25,7 @@ class Model extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            ref_ukm_id: {
+            ref_user_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
@@ -151,6 +151,7 @@ class Model extends PostgresORM {
     get hasOne () {
         return {
             garbages: {table: 'garbages', local: '_id', foreign: 'ref_id'},
+            store: {table: 'store_list', local: 'ref_store_id', foreign: '_id'},
             address_list: {table: 'address_list', local: 'ref_address_id', foreign: '_id'},
             photo_files: {table: 'files', local: 'ref_store_photo_id', foreign: '_id'},
             wall_files: {table: 'files', local: 'ref_wall_photo_id', foreign: '_id'},

@@ -29,7 +29,7 @@ class Model extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            ref_user_id: { // userid dari user yang meng-embed product_id tsb
+            ref_store_id: { // userid dari user yang meng-embed product_id tsb
                 type: String,
                 stringType: 'bpchar',
                 size: 40,

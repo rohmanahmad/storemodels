@@ -6,7 +6,7 @@ const PostgresORM = require('postgresql-orm')
 
 class Model extends PostgresORM {
     get tableName () {
-        return 'ukm_summaries'
+        return 'distributor_summaries'
     }
 
     get schemas () {
@@ -23,7 +23,7 @@ class Model extends PostgresORM {
                 size: 40,
                 isNullable: false
             },
-            ref_ukm_id: {
+            ref_distributor_id: {
                 type: String,
                 stringType: 'bpchar',
                 size: 40,
@@ -36,14 +36,7 @@ class Model extends PostgresORM {
                 isNullable: false,
                 default: 0
             },
-            total_owned_products: { // total produk yg dimiliki di semua store
-                type: Number,
-                stringType: 'int4',
-                size: 0,
-                isNullable: false,
-                default: 0
-            },
-            total_embed_products: { // total product yang di embed para dropshipper/reseller
+            total_products: { // total produk yg dimiliki di semua store
                 type: Number,
                 stringType: 'int4',
                 size: 0,
@@ -64,7 +57,7 @@ class Model extends PostgresORM {
                 isNullable: false,
                 default: 0
             },
-            total_cancel_trx: { // transaksi yang di batalkan oleh pihak ukm ataupun pelanggan
+            total_cancel_trx: { // transaksi yang di batalkan oleh pihak distributor ataupun pelanggan
                 type: Number,
                 stringType: 'int4',
                 size: 0,
@@ -78,7 +71,7 @@ class Model extends PostgresORM {
                 isNullable: false,
                 default: 0
             },
-            total_customer_reports: { // customer yang mereport ukm tsb dengan alasan yg diterima oleh admin
+            total_customer_reports: { // customer yang mereport distributor tsb dengan alasan yg diterima oleh admin
                 type: Number,
                 stringType: 'int4',
                 size: 0,
@@ -152,8 +145,8 @@ class Model extends PostgresORM {
                 keys: {is_trash: -1},
                 uniq: false
             },
-            ukm_id: { // digunakan untuk pencarian by keyword
-                keys: {ref_ukm_id: 1},
+            distributor_id: { // digunakan untuk pencarian by keyword
+                keys: {ref_distributor_id: 1},
                 uniq: true
             },
             date: { // untuk sorting kebanyakan DESC
@@ -170,8 +163,8 @@ class Model extends PostgresORM {
     
     get hasOne () {
         return {
-            garbages: {table: 'garbages', local: '_id', foreign: 'ref_id'},
-            ukm_list: {table: 'ukm_list', local: 'ukm_id', foreign: '_id'},
+            garbages: { table: 'garbages', local: '_id', foreign: 'ref_id' },
+            distributor_list: { table: 'distributor_list', local: 'distributor_id', foreign: '_id' },
         }
     }
 }

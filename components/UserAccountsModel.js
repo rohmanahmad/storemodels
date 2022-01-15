@@ -50,12 +50,6 @@ class Model extends PostgresORM {
                 size: 30,
                 isNullable: false
             },
-            is_has_ukm: {
-                type: Boolean,
-                stringType: 'bool',
-                size: 0,
-                isNullable: false
-            },
             is_pending_confirmation: {
                 type: Boolean,
                 stringType: 'bool',
@@ -156,7 +150,8 @@ class Model extends PostgresORM {
     
     get hasOne () {
         return {
-            garbages: {table: 'garbages', local: '_id', foreign: 'ref_id'}
+            garbages: {table: 'garbages', local: '_id', foreign: 'ref_id'},
+            store: {table: 'store_list', local: '_id', foreign: 'ref_store_id'},
         }
     }
 }
